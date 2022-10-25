@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navigate } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
+import './App.less';
+import { UserNavbar } from './components/UserNavbar/UserNavbar';
+import User from './pages/user/User';
+import UserHome from './pages/user/UserHome/UserHome';
+import UserService from './pages/user/UserService/UserService';
 
 function App() {
+  const role = 'user';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Routes>
+        <Route path='/' element={<UserHome />} />
+        <Route path='/service' element={<UserService />} />
+      </Routes>
     </div>
   );
 }
