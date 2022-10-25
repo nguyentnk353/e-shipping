@@ -1,0 +1,18 @@
+
+{
+    "Provices": [
+            {
+                "label": "Hà Nội",
+                "value": "hanoi"
+            },
+            {
+                "label": "Hà Nội1",
+                "value": "hanoi1"
+            },
+            {
+                "label": "Hà Nội12",
+                "value": "hanoi12"
+            }
+    ]
+}
+       
