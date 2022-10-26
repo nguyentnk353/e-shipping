@@ -5,6 +5,13 @@ import './GuestCheckCharges.css';
 import { InputNumber, Space } from 'antd';
 import anhBus from '../../../assets/images/dt.png';
 import data from '../../../mocks/mockData.json'
+import drug from '../../../assets/images/drugs.png';
+import doc from '../../../assets/images/file.png';
+import fish from '../../../assets/images/fish.png';
+import water from '../../../assets/images/water.png';
+import etc from '../../../assets/images/more.png';
+import cloth from '../../../assets/images/clothes-rack.png';
+
 
 const { Option } = Select;
 
@@ -13,15 +20,31 @@ function GuestCheckCharges() {
   const data = [
     {
       title: 'Tài liệu',
+      icon: doc
     },
     {
       title: 'Thời trang',
+      icon: cloth
     },
     {
       title: 'Đồ điện tử',
+      icon: anhBus
+    },
+    {
+      title: 'Dược phẩm',
+      icon: drug
+    },
+    {
+      title: 'Chất bột nước',
+      icon: water
     },
     {
       title: 'Đồ tươi sống',
+      icon: fish
+    },
+    {
+      title: 'Khác',
+      icon: etc
     },
   ];
 
@@ -134,9 +157,8 @@ function GuestCheckCharges() {
 
             <div>
               <h2>Số tiền thu hộ
-                <sup className='require-symbol'>*</sup>
                 <Space>
-                  <InputNumber size="large" min={1} max={100000} defaultValue={1} style={{
+                  <InputNumber size="large" min={0} max={100000} defaultValue={0} style={{
                     width: '200px',
                     margin: '20px 0px 20px 20px',
                     borderRadius: '5px'
@@ -152,30 +174,21 @@ function GuestCheckCharges() {
           <div>
             <List
               grid={{
-                gutter: 16,
-                column: 4,
+                gutter: 0,
+                column: 7,
               }}
               dataSource={data}
               renderItem={(item) => (
                 <List.Item>
-                  <Card title={item.title}><img src={anhBus} alt="" width="50" height="50"/></Card>
+                  <Card title={item.title} style={{
+                    textAlign: 'center'
+                  }}><img src={item.icon} alt="" width="50" height="50"/></Card>
                 </List.Item>
               )}
             />
           </div>
           
           <button className='btn-tra-cuoc'>Tra cước</button>
-        </div>
-
-        <div className='footer-check-charges'>
-          <div className='guest-check-charge-title-2'>HOTLINE: 1900 00 0091</div>
-          <h2 style={{color: "white"}}>Liên hệ ngay để được tư vấn chi tiết và có giá dịch vụ tốt nhất</h2>
-          <h1 style={{color: "#FCD804"}}>Lấy hàng tận nơi - Giao hàng tận tay - Phục vụ tận tâm</h1>
-          <div>
-            <button className='btn-check-charges-2'>Tìm bưu cục gần bạn</button>
-            <button className='btn-check-charges-3'>Tra cứu giá cước</button>
-              
-          </div>
         </div>
       </div>
     </div>  
