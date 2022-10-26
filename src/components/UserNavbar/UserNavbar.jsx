@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import eShippingLogo from '../../assets/images/e-shipping-logo.png';
 import './UserNavbar.less';
 export const UserNavbar = () => {
   return (
     <nav className='nav'>
-      <Link to='/' className='site-title'>
-        Site Name
-      </Link>
-      <ul>
-        <CustomLink to='/pricing'>Pricing</CustomLink>
-        <CustomLink to='/about'>About</CustomLink>
+      <ul className='ul-left'>
+        <Link to='/' className='site-title'>
+          <img src={eShippingLogo} alt='Logo' />
+        </Link>
+        <CustomLink to='/home'>Home</CustomLink>
+        <CustomLink to='/service'>Service</CustomLink>
       </ul>
     </nav>
   );
