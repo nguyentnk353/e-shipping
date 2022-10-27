@@ -1,14 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.less';
-import { GuestNavbar } from './components/GuestNavbar/GuestNavbar';
-import Guest from './pages/guest/Guest';
 import GuestHome from './pages/guest/GuestHome/GuestHome';
 import GuestService from './pages/guest/GuestService/GuestService';
-import GuestFooter from './components/GuestFooter/GuestFooter';
 import GuestCheckCharges from './pages/guest/GuestCheckCharges/GuestCheckCharges';
-import User from './pages/user/User';
 import UserHome from './pages/user/UserHome/UserHome';
 import UserService from './pages/user/UserService/UserService';
+import Guest from './pages/guest/Guest/Guest';
+import User from './pages/user/User/User';
 
 function App() {
   const role = 'user';
