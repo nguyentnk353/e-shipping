@@ -13,6 +13,9 @@ import service6 from '../../../assets/images/global.png';
 import service7 from '../../../assets/images/hired-truck.png';
 import service8 from '../../../assets/images/warehouse.png';
 import warehousebanner from '../../../assets/images/banner-logistics.png';
+import thirdService1 from '../../../assets/images/cost.png';
+import thirdService2 from '../../../assets/images/save-money.png';
+import thirdService3 from '../../../assets/images/cost.png';
 import './GuestHome.less';
 
 const GuestHome = () => {
@@ -112,6 +115,26 @@ const GuestHome = () => {
             className='service-banner'
           />
         </div>
+      </div>
+      <div className='third-content'>
+        <div className='third-content-left'>
+          <div className='third-content-left-align'>
+            <h1>
+              Tại sao nên lựa chọn <b>E-shipping?</b>
+            </h1>
+            <p>
+              Chúng tôi cung cấp đa dạng các giải pháp logistics tối ưu khắp 63
+              tỉnh thành, đáp ứng mọi nhu cầu của Đối tác Doanh nghiệp & Khách
+              hàng Cá nhân như dịch vụ Chuyển phát Nhanh, Chuyển phát Quốc tế,
+              Chuyển phát Thu hộ (COD), Cho thuê Kho bãi, Hoàn thiện đơn hàng...
+              với văn hóa phục vụ Thân thiện - Nhiệt tình - Tận tâm.
+            </p>
+            <div className='third-content-left-row'>
+              <div className='third-content-left-row-service'></div>
+            </div>
+          </div>
+        </div>
+        <div className='third-content-right'></div>
       </div>
     </div>
   );
