@@ -8,7 +8,7 @@ import './GuestNavbar.less';
 const { Option } = Select;
 export const GuestNavbar = () => {
   return (
-    <div className='navbar'>
+    <div className='navbar-user'>
       <ul className='nav-left-right'>
         <img src={eShippingLogo} alt='logo' className='nav-logo' />
         <div className='dropdown'>
