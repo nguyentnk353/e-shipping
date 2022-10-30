@@ -1,6 +1,6 @@
 .nav {
-  background-color: white;
-  color: black;
+  background-color: #212122;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -51,23 +51,23 @@
   list-style: none;
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
-.nav .ul-right img {
-  height: 32px;
+
+.nav .ul-right input[type=search] {
+  float: right;
+  padding: 10px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
   width: auto;
-  border-radius: 100%;
 }
-.nav .ul-right li {
-  vertical-align: middle;
+
+.nav .ul-right .button[type=submit] {
+  background-color: #212122;
 }
-.nav .ul-right li .li-right-align {
-  padding: 0.5rem 1rem;
-  margin-top: 25px;
-  background-color: #f4f4f4;
-  border-radius: 20px;
-  color: #1890ff;
-}
-.nav .ul-right li .li-right-align a {
-  color: black;
-  font-weight: 700;
+
+.acc-icon {
+  transform: scale(1.8);
 }
