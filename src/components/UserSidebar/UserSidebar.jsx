@@ -30,7 +30,7 @@ function UserSidenav() {
                 <NavIcon><i class="fa-solid fa-cart-shopping" style={{ fontSize: "1.5em" }}></i></NavIcon>
                 <NavText>Tạo vận đơn</NavText>
 
-                <NavItem eventKey="create-1" color="white">
+                <NavItem eventKey="user/create-new-order" color="white">
                     <NavText>Tạo đơn hàng</NavText>
                 </NavItem>
                 <NavItem eventKey="create-mutiple">
