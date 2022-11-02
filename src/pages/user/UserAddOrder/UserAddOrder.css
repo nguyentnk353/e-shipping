@@ -14,12 +14,15 @@
 .frame{
     width: 605px;
     background-color: white;
-    margin: 10px 10px 10px 0;
+    margin: 10px 10px 10px 0px;
    
    
 }
 .content{
     padding: 20px;
+}
+.content.service{
+    padding-bottom: 8px;
 }
 
 .title-frames{
@@ -33,28 +36,29 @@
     font-size: 20px;
 }
 .icon-page-service{
-    font-size: 30px;
+    font-size: 25px;
 }
 .input-1-4{
     align-items: left;
-    text-align: start;
+    text-align: left;
     display: flex;
     
     
 }
 .input-every-2-8{
     font-weight: 700;
+    margin-bottom: 5px;
 }
 .input-every{
     width: 275px;
     height: 40px;
-    margin-right: 10px;
+    margin-right: 20px;
     padding-left: 10px;
     border: 1px solid #c1c1c1;
     border-radius: 3px;
 }
 .input-every-2{
-    width: 565px;
+    width: 275px;
     height: 40px;
     margin-right: 10px;
     padding-left: 10px;
@@ -64,6 +68,7 @@
 .input-3-5{
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
 .btn-page-create-new-order{
@@ -74,5 +79,6 @@
     width: 30%;
     height: 35px;
     font-weight: 700;
-    margin-bottom: 18.5px;
+    margin-bottom: 20px;
+    margin-top: 1px;
 }
