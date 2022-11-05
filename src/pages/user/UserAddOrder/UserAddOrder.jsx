@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import './UserAddOrder.css'
 import { UserOutlined, CaretDownFilled, CodeSandboxSquareFilled } from '@ant-design/icons';
-import { Select, Form } from 'antd';
+import { Select, Form, Modal, Col, Row } from 'antd';
 import 'antd/dist/antd.css';
 import UserTest from '../../../components/UserNavbar/UserTest/UserTest';
 import UserTest2 from '../../../components/UserNavbar/UserTest/UserTest2';
 import { useMount } from 'ahooks';
 import { getAllCategories } from './../../../services/getAllCategories';
 import { getAllProvice } from './../../../services/getAllProvice';
+import { caculatePrice } from '../../../services/caculatePrice';
+import { createNewOrder } from './../../../services/createNewOrder';
+
 
 
 
@@ -15,6 +18,24 @@ function UserAddOrder() {
     const dropIcon = <CaretDownFilled />
     const [getCategories, setGetCategories] = useState([]);
     const [getProvices, setGetProvices] = useState([]);
+    const [bill, setBill] = useState({
+        NameSender: "",
+        PhoneSender: "",
+        NameReceive: "",
+        PhoneReceive: "",
+        Description: "",
+        CategoryId: 0,
+        CategoryName: "",
+        Weight: 0,
+        Price: 0,
+        UserId: 1,
+        StartDepartmentId: 0,
+        StartDepartmentName: "",
+        DestinationDepartmentId: 0,
+        DestinationDepartmentName: "",
+        Address: ""
+    });
+
 
     useMount(() => {
         getAllCategories()
@@ -28,58 +49,101 @@ function UserAddOrder() {
                 setGetProvices(data);
             })
             .catch((err) => console.log(err));
+
+
     });
-    
+
 
     var state = {
         NameSender: "",
         PhoneSender: "",
         NameReceive: "",
         PhoneReceive: "",
-        CategoryId: "",
-        Weight: "",
-        Price: "",
-        UserId: "",
-        StartDepartmentId: "",
-        DestinationDepartmentId: "",
-        Address: ""
-        
-    }
-    let dataCreateBill = {
         Description: "",
-        CategoryId: state.CategoryId,
-        Weight: state.Weight,
-        Price: "",
+        CategoryId: 0,
+        Weight: 0,
+        Price: 0,
         UserId: "",
-        StartDepartmentId: state.StartDepartmentId,
-        DestinationDepartmentId: state.DestinationDepartmentId,
-        Address: state.Address
+        StartDepartmentId: 0,
+        DestinationDepartmentId: 0,
+        Address: ""
+
     }
+
+    // useEffect(()=>{
+    //     caculatePrice(state)
+    //         .then((data) => {
+    //             setGePrice(data);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, [state])
 
     const onSearch = (value) => {
         // console.log('search:', value);
-      };
+    };
 
     const handleChange = (event, billAttribute) => {
-        state[billAttribute] = event.target.value
+        setBill({
+            ...bill,
+            [billAttribute]: event.target.value
+        })
     }
-    const handleChangeStartDepartmentId = (value) => {
-        state.StartDepartmentId = value
+    const handleChangeStartDepartmentId = (value, data) => {
+        setBill({
+            ...bill,
+            StartDepartmentId: value,
+            StartDepartmentName: data.label
+        })
     }
-    const handleChangeDestinationDepartmentId = (value) => {
-        state.DestinationDepartmentId = value
+    const handleChangeDestinationDepartmentId = (value, data) => {
+        setBill({
+            ...bill,
+            DestinationDepartmentId: value,
+            DestinationDepartmentName: data.label
+        })
     }
-    const handleChangeCategoryId = (value) => {
-        state.CategoryId = value
+    const handleChangeCategoryId = (value, data) => {
+        setBill({
+            ...bill,
+            CategoryId: value,
+            CategoryName: data.label
+        })
+
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-        // let a = `Người gửi:${state.NameSender} - SĐT:${state.PhoneSender} / Người nhận:${state.NameReceive} - SĐT:${state.PhoneReceive}`
-        // dataCreateBill.Description = a;
-        // console.log(dataCreateBill)
-        console.log(state);
+         let description = `Người gửi: ${bill.NameSender} - ${bill.PhoneSender} / Người nhận: ${bill.NameReceive} - ${bill.PhoneReceive}`
+
+        caculatePrice(bill)
+            .then((data) => {
+                setBill((c) => ({
+                    ...c,
+                    Price: data,
+                    Description: description
+                }));
+            })
+            .catch((err) => console.log(err));
+        showModal();
     }
-    
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+         setIsModalOpen(false);
+         createNewOrder(bill)
+            .then(
+                alert("tạo đơn thành công")
+            )
+            .catch((err) => console.log(err));
+
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
     return (
 
         <div>
@@ -245,7 +309,7 @@ function UserAddOrder() {
                                                                 label: provice.provinceName,
                                                                 value: provice.provinceId,
                                                             }))}
-                                                            onChange={handleChangeDestinationDepartmentId}
+                                                        onChange={handleChangeDestinationDepartmentId}
                                                         >
                                                         </Select>
                                                     </div>
@@ -294,7 +358,7 @@ function UserAddOrder() {
                                             </div>
                                             <div className='input-every-2-8' style={{ marginLeft: '17px' }}>
                                                 <Form.Item
-                                                    label="Khối lượng"
+                                                    label="Khối lượng (Kg)"
                                                     name='Weight'
                                                     rules={[{ required: true }]}
                                                 >
@@ -308,9 +372,33 @@ function UserAddOrder() {
 
                                         </div>
                                     </div>
-                                    <button className='btn-page-create-new-order' onClick={(event) =>handleSubmit(event)}>
-                                        TẠO ĐƠN HÀNG
+                                    <button className='btn-page-create-new-order' onClick={(event) => handleSubmit(event)}>
+                                        XEM ĐƠN HÀNG
                                     </button>
+                                    <Modal title="Thông tin đơn hàng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                        <Row>
+                                            <Col span={12}><p><b>Người gửi:</b> {bill.NameSender}</p></Col>
+                                            <Col span={12}><p><b>Số điện thoại:</b> {bill.PhoneSender}</p></Col>
+                                        </Row>
+                                        <Row>
+                                            <Col span={12}><p><b>Người nhận:</b> {bill.NameReceive}</p></Col>
+                                            <Col span={12}><p><b>Số điện thoại:</b> {bill.PhoneReceive}</p></Col>
+                                        </Row>
+                                        <Row>
+                                            <Col span={12}><p><b>Loại hàng hóa:</b> {bill.CategoryName}</p></Col>
+                                            <Col span={12}><p><b>Khối lượng:</b> {bill.Weight} Kg</p></Col>
+                                        </Row>
+                                        <Row>
+                                            <Col span={12}><p><b>Bưu cục gửi:</b> {bill.StartDepartmentName}</p></Col>
+                                            <Col span={12}><p><b>Bưu cục nhận:</b> {bill.DestinationDepartmentName}</p></Col>
+                                        </Row>
+                                        <Row>
+                                            <Col span={24}><p><b>Chi tiết: </b> {bill.Address}</p></Col>
+                                        </Row>
+                                        <Row>
+                                            <Col span={24}><p><b>Description: </b> {bill.Description}</p></Col>
+                                        </Row>
+                                    </Modal>
                                 </div>
                             </div>
                         </div>
