@@ -46,7 +46,7 @@ const GuestFooter = () => {
                 <br />
                 <b>Email:</b> nhattin@ntlogistics.vn
                 <br />
-                <b>Hotline:</b> 1900 63 6688
+                <b>Hotline:</b> 0905146956
               </p>
               <img src={checkFooter} alt='Check footer' />
             </div>
