@@ -80,3 +80,17 @@
     margin-bottom: 20px;
     margin-top: 1px;
 }
+
+.form-message-page-create-new-order{
+    color: red;
+    padding-left: 8px;
+    font-weight: 400;
+
+}
+.form-message-page-create-new-order-service{
+    color: red;
+    display: flex;
+    font-weight: 400;
+    padding-left: 5px;
+
+}

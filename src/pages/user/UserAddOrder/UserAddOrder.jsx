@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import './UserAddOrder.css'
-import { UserOutlined, CaretDownFilled, CodeSandboxSquareFilled } from '@ant-design/icons';
-import { Select, Form, Modal, Col, Row } from 'antd';
+import { CaretDownFilled, CodeSandboxSquareFilled, UserOutlined } from '@ant-design/icons';
+import { useMount } from 'ahooks';
+import { Col, Form, Modal, Row, Select } from 'antd';
 import 'antd/dist/antd.css';
+import React, { useState } from 'react';
 import UserTest from '../../../components/UserNavbar/UserTest/UserTest';
 import UserTest2 from '../../../components/UserNavbar/UserTest/UserTest2';
-import { useMount } from 'ahooks';
-import { getAllCategories } from './../../../services/getAllCategories';
-import { getAllProvice } from './../../../services/getAllProvice';
 import { caculatePrice } from '../../../services/caculatePrice';
 import { createNewOrder } from './../../../services/createNewOrder';
-
+import { getAllCategories } from './../../../services/getAllCategories';
+import { getAllProvice } from './../../../services/getAllProvice';
+import './UserAddOrder.css';
 
 
 
@@ -18,6 +17,18 @@ function UserAddOrder() {
     const dropIcon = <CaretDownFilled />
     const [getCategories, setGetCategories] = useState([]);
     const [getProvices, setGetProvices] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [errors, setErrors] = useState({
+        NameSender: "",
+        PhoneSender: "",
+        NameReceive: "",
+        PhoneReceive: "",
+        CategoryId: "",
+        Weight: "",
+        StartDepartmentId: "",
+        DestinationDepartmentId: "",
+        Address: ""
+    });
     const [bill, setBill] = useState({
         NameSender: "",
         PhoneSender: "",
@@ -36,7 +47,6 @@ function UserAddOrder() {
         Address: ""
     });
 
-
     useMount(() => {
         getAllCategories()
             .then((data) => {
@@ -53,67 +63,154 @@ function UserAddOrder() {
 
     });
 
-
-    var state = {
-        NameSender: "",
-        PhoneSender: "",
-        NameReceive: "",
-        PhoneReceive: "",
-        Description: "",
-        CategoryId: 0,
-        Weight: 0,
-        Price: 0,
-        UserId: "",
-        StartDepartmentId: 0,
-        DestinationDepartmentId: 0,
-        Address: ""
-
-    }
-
-    // useEffect(()=>{
-    //     caculatePrice(state)
-    //         .then((data) => {
-    //             setGePrice(data);
-    //         })
-    //         .catch((err) => console.log(err));
-    // }, [state])
-
     const onSearch = (value) => {
         // console.log('search:', value);
     };
 
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleOk = () => {
+        setIsModalOpen(false);
+        createNewOrder(bill)
+            .then(
+                alert("tạo đơn thành công")
+            )
+            .catch(err => {
+                if (err.response) {
+                    console.log(err.response.status)
+                }
+            });
+
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+    //blur validate
+    const validade = (event, errorAttribute, errorName) => {
+        if (event.target.value === '' || event.target.value <= 0) {
+            setErrors({
+                ...errors,
+                [errorAttribute]: `Vui lòng nhập ${errorName}`
+            });
+        } else {
+            setErrors({
+                ...errors,
+                [errorAttribute]: ''
+            });
+        }
+    }
+
+    const blurStartDepartmentId = (value, data) => {
+        if ((bill.StartDepartmentId === 0) && (typeof (value) === 'object' || value === 0)) {
+            setErrors({
+                ...errors,
+                StartDepartmentId: 'Vui lòng chọn bưu cục gửi'
+            });
+        } else {
+            setErrors({
+                ...errors,
+                StartDepartmentId: ''
+            })
+        }
+    }
+
+    const blurChangeDestinationDepartmentId = (value, data) => {
+        if ((bill.DestinationDepartmentId === 0) && (typeof (value) === 'object' || value === 0)) {
+            setErrors({
+                ...errors,
+                DestinationDepartmentId: 'Vui lòng chọn bưu cục nhận'
+            });
+        } else {
+            setErrors({
+                ...errors,
+                DestinationDepartmentId: ''
+            })
+        }
+    }
+
+    const blurChangeCategoryId = (value, data) => {
+        if ((bill.CategoryId === 0) && (typeof (value) === 'object' || value === 0)) {
+            setErrors({
+                ...errors,
+                CategoryId: 'Vui lòng chọn loại hàng hóa'
+            });
+        } else {
+            setErrors({
+                ...errors,
+                CategoryId: ''
+            })
+        }
+    }
+
+    //handle Input
     const handleChange = (event, billAttribute) => {
+        setErrors({
+            ...errors,
+            [billAttribute]: ''
+        })
+        if (billAttribute === 'Weight')
+            event.target.value = Math.ceil(event.target.value)
         setBill({
             ...bill,
             [billAttribute]: event.target.value
         })
     }
+
     const handleChangeStartDepartmentId = (value, data) => {
+        if (errors.DestinationDepartmentId === 'Bưu cục nhận và gửi phải khác nhau')
+            setErrors({
+                ...errors,
+                DestinationDepartmentId: ''
+            })
+
         setBill({
             ...bill,
             StartDepartmentId: value,
             StartDepartmentName: data.label
         })
     }
+
     const handleChangeDestinationDepartmentId = (value, data) => {
+        if (errors.DestinationDepartmentId === 'Bưu cục nhận và gửi phải khác nhau')
+            setErrors({
+                ...errors,
+                DestinationDepartmentId: ''
+            })
         setBill({
             ...bill,
             DestinationDepartmentId: value,
             DestinationDepartmentName: data.label
         })
     }
+
     const handleChangeCategoryId = (value, data) => {
+
         setBill({
             ...bill,
             CategoryId: value,
             CategoryName: data.label
         })
-
     }
+
+    function checkSubmit() {
+        if (bill.NameSender === '') return -1;
+        if (bill.PhoneSender === '') return -1;
+        if (bill.NameReceive === '') return -1;
+        if (bill.PhoneReceive === '') return -1;
+        if (bill.StartDepartmentId === 0) return -1;
+        if (bill.StartDepartmentId === bill.DestinationDepartmentId) return 0;
+        if (bill.StartDepartmentId === 0) return -1;
+        if (bill.CategoryId === 0) return -1;
+        if (bill.Weight <= 0) return -1;
+        return 1;
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-         let description = `Người gửi: ${bill.NameSender} - ${bill.PhoneSender} / Người nhận: ${bill.NameReceive} - ${bill.PhoneReceive}`
-
+        let description = `Người gửi: ${bill.NameSender} - ${bill.PhoneSender} / Người nhận: ${bill.NameReceive} - ${bill.PhoneReceive}`
         caculatePrice(bill)
             .then((data) => {
                 setBill((c) => ({
@@ -123,32 +220,29 @@ function UserAddOrder() {
                 }));
             })
             .catch((err) => console.log(err));
-        showModal();
+        switch (checkSubmit()) {
+            case -1:
+                alert("Vui lòng nhập đầy đủ thông tin")
+                break;
+            case 0:
+                setErrors({
+                    ...errors,
+                    DestinationDepartmentId: 'Bưu cục nhận và gửi phải khác nhau'
+                })
+                break;
+            case 1:
+                showModal();
+                break;
+            default:
+                break;
+        }
     }
 
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleOk = () => {
-         setIsModalOpen(false);
-         createNewOrder(bill)
-            .then(
-                alert("tạo đơn thành công")
-            )
-            .catch((err) => console.log(err));
-
-    };
-
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
     return (
 
         <div>
             <UserTest />
-            <form>
+            <form id='form-create-new-order'>
                 <div style={{ display: 'flex' }}>
                     <UserTest2 />
                     <div className='page-add-order'>
@@ -170,9 +264,12 @@ function UserAddOrder() {
                                                     rules={[{ required: true }]}
                                                 >
                                                     <input type='text' className='input-every 1' placeholder='Họ và tên người gửi'
-                                                        value={state.NameSender}
+                                                        value={bill.NameSender}
                                                         onChange={(event) => handleChange(event, 'NameSender')}
+                                                        onBlur={(event) => validade(event, 'NameSender', 'họ và tên người gửi')}
+
                                                     />
+                                                    <span className="form-message-page-create-new-order">{errors.NameSender}</span>
                                                 </Form.Item>
                                             </div>
                                             <div className='input-every-2-8'>
@@ -182,9 +279,11 @@ function UserAddOrder() {
                                                     rules={[{ required: true }]}
                                                 >
                                                     <input type='text' className='input-every 3' placeholder='Số điện thoại'
-                                                        value={state.PhoneSender}
+                                                        value={bill.PhoneSender}
                                                         onChange={(event) => handleChange(event, 'PhoneSender')}
+                                                        onBlur={(event) => validade(event, 'PhoneSender', 'số điện thoại')}
                                                     />
+                                                    <span className="form-message-page-create-new-order">{errors.PhoneSender}</span>
                                                 </Form.Item>
                                             </div>
                                         </div>
@@ -209,9 +308,11 @@ function UserAddOrder() {
                                                     rules={[{ required: true }]}
                                                 >
                                                     <input type='text' className='input-every 1' placeholder='Họ và tên người nhận'
-                                                        value={state.NameReceive}
+                                                        value={bill.NameReceive}
                                                         onChange={(event) => handleChange(event, 'NameReceive')}
+                                                        onBlur={(event) => validade(event, 'NameReceive', 'họ và tên người nhận')}
                                                     />
+                                                    <span className="form-message-page-create-new-order">{errors.NameReceive}</span>
                                                 </Form.Item>
                                             </div>
                                             <div className='input-every-2-8'>
@@ -221,9 +322,11 @@ function UserAddOrder() {
                                                     rules={[{ required: true }]}
                                                 >
                                                     <input type='text' className='input-every 3' placeholder='Số điện thoại'
-                                                        value={state.PhoneReceive}
+                                                        value={bill.PhoneReceive}
                                                         onChange={(event) => handleChange(event, 'PhoneReceive')}
+                                                        onBlur={(event) => validade(event, 'PhoneReceive', 'số điện thoại')}
                                                     />
+                                                    <span className="form-message-page-create-new-order">{errors.PhoneReceive}</span>
                                                 </Form.Item>
                                             </div>
                                         </div>
@@ -258,6 +361,7 @@ function UserAddOrder() {
                                                     suffixIcon={dropIcon}
                                                     size='large'
                                                     onSearch={onSearch}
+                                                    required
                                                     style={{
                                                         width: '265px',
                                                         textAlign: 'left',
@@ -270,10 +374,12 @@ function UserAddOrder() {
                                                         label: provice.provinceName,
                                                         value: provice.provinceId,
                                                     }))}
-                                                    //   value={state.StartDepartmentId}
+                                                    //   value={bill.StartDepartmentId}
                                                     onChange={handleChangeStartDepartmentId}
+                                                    onBlur={blurStartDepartmentId}
                                                 >
                                                 </Select>
+                                                <span className="form-message-page-create-new-order-service">{errors.StartDepartmentId}</span>
                                             </div>
 
                                         </div>
@@ -309,13 +415,15 @@ function UserAddOrder() {
                                                                 label: provice.provinceName,
                                                                 value: provice.provinceId,
                                                             }))}
-                                                        onChange={handleChangeDestinationDepartmentId}
+                                                            onChange={handleChangeDestinationDepartmentId}
+                                                            onBlur={blurChangeDestinationDepartmentId}
                                                         >
                                                         </Select>
+                                                        <span className="form-message-page-create-new-order-service">{errors.DestinationDepartmentId}</span>
                                                     </div>
 
                                                     <input type='text' className='input-every-2' placeholder='Địa chỉ chi tiết'
-                                                        //    value={state.Address}
+                                                        //    value={bill.Address}
                                                         onChange={(event) => handleChange(event, 'Address')}
                                                     />
                                                 </div>
@@ -351,8 +459,10 @@ function UserAddOrder() {
                                                             }))}
 
                                                             onChange={handleChangeCategoryId}
+                                                            onBlur={blurChangeCategoryId}
                                                         >
                                                         </Select>
+                                                        <span className="form-message-page-create-new-order-service">{errors.CategoryId}</span>
                                                     </div>
                                                 </Form.Item>
                                             </div>
@@ -362,11 +472,12 @@ function UserAddOrder() {
                                                     name='Weight'
                                                     rules={[{ required: true }]}
                                                 >
-                                                    <input type='text' className='input-every 1' placeholder='Khối lượng'
-                                                        value={state.Weight}
+                                                    <input type='number' className='input-every 1' placeholder='Khối lượng'
+                                                        // value={bill.Weight}
                                                         onChange={(event) => handleChange(event, 'Weight')}
+                                                        onBlur={(event) => validade(event, 'Weight', 'khối lượng > 0')}
                                                     />
-
+                                                    <span className="form-message-page-create-new-order-service">{errors.Weight}</span>
                                                 </Form.Item>
                                             </div>
 
@@ -393,10 +504,10 @@ function UserAddOrder() {
                                             <Col span={12}><p><b>Bưu cục nhận:</b> {bill.DestinationDepartmentName}</p></Col>
                                         </Row>
                                         <Row>
-                                            <Col span={24}><p><b>Chi tiết: </b> {bill.Address}</p></Col>
+                                            <Col span={24}><p hidden={bill.Address === ''}><b>Địa chỉ nhận: </b> {bill.Address}</p></Col>
                                         </Row>
                                         <Row>
-                                            <Col span={24}><p><b>Description: </b> {bill.Description}</p></Col>
+                                            <Col span={24}><p><b>Tổng Phí: </b>{bill.Price}. 000 VNĐ</p></Col>
                                         </Row>
                                     </Modal>
                                 </div>
@@ -408,6 +519,7 @@ function UserAddOrder() {
             </form>
         </div>
     )
+
 }
 
 export default UserAddOrder

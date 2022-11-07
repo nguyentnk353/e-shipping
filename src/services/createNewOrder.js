@@ -11,7 +11,11 @@ export function createNewOrder(props) {
   //   DestinationDepartmentId: props.DestinationDepartmentId,
   //   Address: props.Address
   // };
-
+  // {
+  //   headers: {
+  //     'Content-Type': 'multipart/form-data'
+  //   }
+  // }
 
   const data = {
     Description: props.Description,
@@ -26,12 +30,7 @@ export function createNewOrder(props) {
 
   // console.log(props)
   return axios
-    .post(url, data, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    }
-    )
+    .post(url, data)
     .then((response) => console.log(response))
     .catch((err) => console.log(err));
 }
