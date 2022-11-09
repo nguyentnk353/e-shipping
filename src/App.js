@@ -8,6 +8,7 @@ import User from './pages/user/User/User';
 import UserAddOrder from './pages/user/UserAddOrder/UserAddOrder';
 import UserHome from './pages/user/UserHome/UserHome';
 import UserService from './pages/user/UserService/UserService';
+import UserViewBills from './pages/user/UserViewBills/UserViewBills';
 
 function App() {
   // const role = 'user';
@@ -23,7 +24,7 @@ function App() {
           <Route path='home' element={<UserHome />} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
-
+          <Route path='view-bills' element={<UserViewBills />} />
         </Route>
       </Routes>
     </div>

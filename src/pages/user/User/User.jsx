@@ -1,10 +1,18 @@
 import React from 'react';
-import { Outlet, Route, Routes } from 'react-router';
+import { Outlet } from 'react-router';
+import UserTest from './../../../components/UserNavbar/UserTest/UserTest';
+import UserTest2 from './../../../components/UserNavbar/UserTest/UserTest2';
 
 const User = () => {
   return (
     <div>
-      <Outlet />
+      {/* <UserTest /> */}
+      <div style={{ display: 'flex' }}>
+        {/* <UserTest2 /> */}
+        <Outlet />
+      </div>
+      
+      
     </div>
   );
 };
