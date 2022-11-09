@@ -56,7 +56,7 @@ export const UserNavbar = (props) => {
             // onSearch={onSearch}
             enterButton
           />
-          <div className='nav-info'>
+          <div className='nav-info' style={{ cursor: 'pointer' }}>
             <Dropdown overlay={menu}>
               <p onClick={(e) => e.preventDefault()}>
                 <img

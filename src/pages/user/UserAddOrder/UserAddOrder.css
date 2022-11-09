@@ -1,0 +1,96 @@
+.page-add-order{
+    background-color: #ebedef;
+    display: flex;
+    padding: 1rem;
+    
+
+}
+.frame-sender-receiver{
+    /* display: flex;
+    margin-left: 18%;
+    margin-top: 1%; */
+    width: 50%;
+}
+.frame{
+    width: 605px;
+    background-color: white;
+    margin: 10px 10px 10px 0px;
+   
+   
+}
+.content{
+    padding: 20px;
+}
+.content.service{
+    padding-bottom: 8px;
+}
+
+.title-frames{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 18px;
+
+}
+.icon-page-add{
+    font-size: 20px;
+}
+.icon-page-service{
+    font-size: 25px;
+}
+.input-1-4{
+    align-items: left;
+    text-align: left;
+    display: flex;
+}
+.input-every-2-8{
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.input-every{
+    width: 275px;
+    height: 40px;
+    margin-right: 20px;
+    padding-left: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+.input-every-2{
+    width: 275px;
+    height: 40px;
+    margin-right: 10px;
+    padding-left: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 3px;
+}
+.input-3-5{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.btn-page-create-new-order{
+    background-color: #1890FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 30%;
+    height: 35px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    margin-top: 1px;
+}
+
+.form-message-page-create-new-order{
+    color: red;
+    padding-left: 8px;
+    font-weight: 400;
+
+}
+.form-message-page-create-new-order-service{
+    color: red;
+    display: flex;
+    font-weight: 400;
+    padding-left: 5px;
+
+}

@@ -11,6 +11,7 @@ import fish from '../../../assets/images/fish.png';
 import water from '../../../assets/images/water.png';
 import etc from '../../../assets/images/more.png';
 import cloth from '../../../assets/images/clothes-rack.png';
+import { AiOutlineFileSearch } from 'react-icons/ai';
 
 
 const { Option } = Select;
@@ -182,16 +183,115 @@ function GuestCheckCharges() {
                 <List.Item>
                   <Card title={item.title} style={{
                     textAlign: 'center'
-                  }}><img src={item.icon} alt="" width="50" height="50"/></Card>
+                  }}><img src={item.icon} alt="" width="50" height="50" /></Card>
                 </List.Item>
               )}
             />
           </div>
-          
+
           <button className='btn-tra-cuoc'>Tra cước</button>
         </div>
       </div>
-    </div>  
+
+      <div>
+        <section className="pb-4 pb-md-5" id="results">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-10 col-md-10 col-sm-12 col-12 offset-md-1 mt-3">
+                <div className="w-100 bg-white">
+                  <div className="font-bold font-24px text-center mb-4">Thông tin cước vận chuyển</div>
+                  <div className="w-100 box-kqorder p-3">
+                    <div className="row" style={{ position: 'relative' }}>
+                      <div className="spinner-border text-primary" style={{ display: 'none', position: 'absolute', zIndex: 1, top: '46%', left: '48%' }} />
+                      <ul className="col-lg-6 col-md-6 col-sm-6 col-12 pr-md-4 ul-kqbc font-size-16">
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div className="font-bold font-size-18">CPN</div>
+                          <div>
+                            <a onclick="create_order_from_web()" className="btn d-flex align-items-center"><AiOutlineFileSearch /> Tạo vận đơn</a>
+                          </div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Cước chính ( VNĐ ):</div>
+                          <div>54.756</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Phí COD ( VNĐ ):</div>
+                          <div>0</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Thời gian toàn trình dự kiến :</div>
+                          <div>24h</div>
+                        </li>
+                      </ul>
+                      <ul className="col-lg-6 col-md-6 col-sm-6 col-12 pl-md-4 ul-kqbc font-size-16">
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div className="font-bold font-size-18">Đường bộ</div>
+                          <div>
+                            <a onclick="create_order_from_web()" className="btn d-flex align-items-center"><AiOutlineFileSearch /> Tạo vận đơn</a>
+                          </div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Cước chính ( VNĐ ):</div>
+                          <div>33.696</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Phí COD ( VNĐ ):</div>
+                          <div>0</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Thời gian toàn trình dự kiến :</div>
+                          <div>48h</div>
+                        </li>
+                      </ul>
+                      <ul className="col-lg-6 col-md-6 col-sm-6 col-12 mt-3 mt-md-5 pr-md-4 ul-kqbc font-size-16">
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div className="font-bold font-size-18">Tiết kiệm</div>
+                          <div>
+                            <a onclick="create_order_from_web()" className="btn d-flex align-items-center"><AiOutlineFileSearch /> Tạo vận đơn</a>
+                          </div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Cước chính ( VNĐ ):</div>
+                          <div>40.716</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Phí COD ( VNĐ ):</div>
+                          <div>0</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Thời gian toàn trình dự kiến :</div>
+                          <div>56h</div>
+                        </li>
+                      </ul>
+                      <ul className="col-lg-6 col-md-6 col-sm-6 col-12 mt-3 mt-md-5 pr-md-4 ul-kqbc font-size-16">
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div className="font-bold font-size-18">Hỏa tốc</div>
+                          <div>
+                            <a onclick="create_order_from_web()" className="btn d-flex align-items-center"><AiOutlineFileSearch /> Tạo vận đơn</a>
+                          </div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Cước chính ( VNĐ ):</div>
+                          <div>103.896</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Phí COD ( VNĐ ):</div>
+                          <div>0</div>
+                        </li>
+                        <li className="d-flex justify-content-between align-items-center">
+                          <div>Thời gian toàn trình dự kiến :</div>
+                          <div>18h</div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   )
 }
 

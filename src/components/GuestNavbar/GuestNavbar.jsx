@@ -12,7 +12,7 @@ export const GuestNavbar = () => {
     navigate('/home', { replace: true });
   }
   return (
-    <div className='navbar'>
+    <div className='navbar-user'>
       <ul className='nav-left-right'>
         <img
           src={eShippingLogo}
