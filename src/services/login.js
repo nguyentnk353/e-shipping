@@ -1,17 +1,18 @@
 import axios from 'axios';
 
-export function checkLogin(props) {
-  const url = 'https://deliver-store.tk/api/customer/authenticate';
+export function login(props) {
+  const url = 'https://deliver-store.tk/api/v1/customer/authenticate';
   const LoginName = props.username;
   const Password = props.password;
+  const postData = {};
   const error = { error: 'login-fail' };
   return axios
-    .get(url, {
+    .post(url, postData, {
       params: {
         loginName: LoginName,
         password: Password,
       },
     })
     .then((response) => response.data)
-    .catch((err) => error);
+    .catch((err) => err.response.data);
 }

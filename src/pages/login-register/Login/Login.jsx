@@ -1,12 +1,44 @@
-import { Checkbox, Form, Input, Button } from 'antd';
+import { Checkbox, Form, Input, Button, Alert } from 'antd';
 import React from 'react';
 import logo from '../../../assets/images/e-shipping-logo.png';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import jwt_decode from 'jwt-decode';
 import './Login.less';
+import { login } from './../../../services/login';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [invalidLogin, setInvalideLogin] = useState(false);
+  function alertClose() {
+    setInvalideLogin(false);
+  }
   function handleFinish(value) {
-    console.log(value);
+    login(value)
+      .then((data) => {
+        const errLogin = 'Invalid Login';
+
+        if (data.localeCompare(errLogin, 'en', { sensitivity: 'base' }) == 0) {
+          setInvalideLogin(true);
+        } else {
+          const decoded = jwt_decode(data);
+          localStorage.setItem('loginUser', JSON.stringify(decoded));
+          switch (decoded.Role) {
+            case 'admin':
+              return navigate('/admin/home', { replace: true });
+            case 'customer':
+              return navigate('/user/home', { replace: true });
+            case 'manager':
+              return navigate('/manager/home', { replace: true });
+            default:
+              return null;
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   return (
     <div className='login-background'>
@@ -16,10 +48,18 @@ const Login = () => {
             <h1>Đăng nhập</h1>
             <h4>Chào mừng trở lại</h4>
           </div>
-          {/* <div className='login-card-head-right'> */}
+
           <img src={logo} alt='Pet transport logo' className='login-logo' />
-          {/* </div> */}
         </div>
+        {invalidLogin && (
+          <Alert
+            message='Sai tên đăng nhập hoặc mật khẩu'
+            type='error'
+            showIcon
+            closable
+            onClose={alertClose}
+          />
+        )}
         <div className='login-input'>
           <Form name='basic' onFinish={handleFinish}>
             <Form.Item
@@ -33,7 +73,6 @@ const Login = () => {
             >
               <Input placeholder='Tên đăng nhập' prefix={<AiOutlineUser />} />
             </Form.Item>
-
             <Form.Item
               name='password'
               rules={[
@@ -50,13 +89,11 @@ const Login = () => {
                 type='password'
               />
             </Form.Item>
-
             <Form.Item style={{ margin: '0' }}>
               <a className='login-form-forgot' href='#'>
                 Quên mật Khẩu?
               </a>
             </Form.Item>
-
             <Form.Item>
               <Button
                 type='primary'

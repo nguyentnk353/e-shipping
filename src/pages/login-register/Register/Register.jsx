@@ -10,6 +10,7 @@ import {
   message,
 } from 'antd';
 import {
+  AiOutlineHome,
   AiOutlineLock,
   AiOutlineMail,
   AiOutlinePhone,
@@ -17,11 +18,31 @@ import {
 } from 'react-icons/ai';
 import logo from '../../../assets/images/e-shipping-logo.png';
 import './Register.less';
+import { register } from './../../../services/register';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+  function handleFinish(value) {
+    register(value)
+      .then((data) => {
+        const success = 'Register Success';
+        if (data.localeCompare(success, 'en', { sensitivity: 'base' }) == 0) {
+          message.success('Đăng ký thành công');
+          setTimeout(() => {
+            navigate('/login', { replace: true });
+          }, 2000);
+        } else {
+          message.error('Đăng ký không thành công');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   return (
     <div>
-      <div className='login-background'>
+      <div className='register-background'>
         <div className='login-card'>
           <div className='login-card-head'>
             <div className='login-card-head-left'>
@@ -36,13 +57,20 @@ const Register = () => {
             {/* </div> */}
           </div>
           <div className='login-input'>
-            <Form
-              name='basic'
-              // initialValues={{
-              //   remember: true,
-              // }}
-              autoComplete='off'
-            >
+            <Form name='basic' autoComplete='off' onFinish={handleFinish}>
+              <Form.Item
+                name='fullName'
+                rules={[
+                  {
+                    required: true,
+                    message: 'Hãy nhập đầy đủ họ tên!',
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <Input placeholder='Họ & tên' prefix={<AiOutlineUser />} />
+              </Form.Item>
+
               <Form.Item
                 name='username'
                 rules={[
@@ -71,11 +99,25 @@ const Register = () => {
               </Form.Item>
               <Form.Item
                 name='confirmPassword'
+                dependencies={['password']}
+                hasFeedback
                 rules={[
                   {
                     required: true,
                     message: 'Hãy xác nhận mật khẩu!',
                   },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue('password') === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error(
+                          'Mật khẩu xác nhận không khớp với mật khẩu trên, xin hãy nhập lại !'
+                        )
+                      );
+                    },
+                  }),
                 ]}
               >
                 <Input.Password
@@ -83,22 +125,29 @@ const Register = () => {
                   prefix={<AiOutlineLock />}
                 />
               </Form.Item>
-
               <Form.Item
-                name='fullName'
+                name='address'
                 rules={[
                   {
                     required: true,
-                    message: 'Hãy nhập đầy đủ họ tên!',
+                    message: 'Hãy nhập địa chỉ thường trú!',
+                    whitespace: true,
                   },
                 ]}
               >
-                <Input placeholder='Họ & tên' prefix={<AiOutlineUser />} />
+                <Input
+                  placeholder='Địa chỉ thường trú'
+                  prefix={<AiOutlineHome />}
+                />
               </Form.Item>
-
               <Form.Item
                 name='email'
                 rules={[
+                  {
+                    type: 'email',
+                    message:
+                      'Hãy nhập đúng định dạng email (email@domain.com)!',
+                  },
                   {
                     required: true,
                     message: 'Hãy nhập email!',

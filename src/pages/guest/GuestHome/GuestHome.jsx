@@ -4,7 +4,7 @@ import { AiFillCaretRight, AiOutlineFileSearch } from 'react-icons/ai';
 import { MdPlace, MdPostAdd } from 'react-icons/md';
 import { SlArrowUp } from 'react-icons/sl';
 import { RiArrowRightSFill } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import service1 from '../../../assets/images/plan-fast.png';
 import service2 from '../../../assets/images/fast-delivery.png';
 import service3 from '../../../assets/images/logistics.png';
@@ -25,6 +25,7 @@ import thirdServiceRight5 from '../../../assets/images/support.png';
 import './GuestHome.less';
 
 const GuestHome = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className='first-content'>
@@ -34,7 +35,7 @@ const GuestHome = () => {
             <div className='first-content-box1'>
               <span className='first-content-box1-head'></span>
               <div className='first-content-box1-cube'>
-                <Link to='#'>
+                <Link to='/check-charge'>
                   <span>
                     <MdPostAdd className='cube-icon' />
                   </span>

@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.less';
 import GuestHome from './pages/guest/GuestHome/GuestHome';
 import GuestService from './pages/guest/GuestService/GuestService';
@@ -9,29 +9,33 @@ import Guest from './pages/guest/Guest/Guest';
 import User from './pages/user/User/User';
 import Login from './pages/login-register/Login/Login';
 import Register from './pages/login-register/Register/Register';
-
-const ROLES = {
-  User: 2001,
-  Editor: 1984,
-  Admin: 5150,
-};
-
+import { RolesAuthRoute } from './context/RolesAuthRoute';
+import { Suspense } from 'react';
 function App() {
   return (
     <div className='App'>
       <Routes>
         {/* public routes */}
-        <Route path='/guest' element={<Guest />}>
+        <Route path='/' element={<Navigate to='/home' />} />
+        <Route path='/' element={<Guest />}>
           <Route path='home' element={<GuestHome />} />
           <Route path='service' element={<GuestService />} />
           <Route path='check-charge' element={<GuestCheckCharges />} />
         </Route>
-        <Route path='login' element={<Login />} />
-        <Route path='register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
 
         {/* protected routes */}
-
-        <Route path='/user' element={<User />}>
+        <Route
+          path='/user'
+          element={
+            <Suspense fallback={<></>}>
+              <RolesAuthRoute roles={['customer']}>
+                <User />
+              </RolesAuthRoute>
+            </Suspense>
+          }
+        >
           <Route path='home' element={<UserHome />} />
           <Route path='service' element={<UserService />} />
         </Route>

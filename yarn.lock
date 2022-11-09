@@ -8075,6 +8075,11 @@ react-refresh@^0.11.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
+react-rolebased-router@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-rolebased-router/-/react-rolebased-router-2.1.0.tgz#ec29a27cfaf295f43f9d443d8c348079fc52fbaa"
+  integrity sha512-GewZ/8DjOBXag/EZ55gQ/KXTw8ckgS3DtCNIeGrIsCQh02FqFawRvoyriM793KLne0FxN0Qzleyw3KXwCKsqQw==
+
 react-router-dom@^6.4.2:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-6.4.2.tgz#115b37d501d6d8ac870683694978c51c43e6c0d2"
