@@ -1,13 +1,12 @@
 import { CaretDownFilled, CodeSandboxSquareFilled, UserOutlined } from '@ant-design/icons';
 import { useMount } from 'ahooks';
 import { Col, Form, Modal, Row, Select } from 'antd';
-import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import { caculatePrice } from '../../../services/caculatePrice';
 import { createNewOrder } from './../../../services/createNewOrder';
 import { getAllCategories } from './../../../services/getAllCategories';
 import { getAllProvice } from './../../../services/getAllProvice';
-import './UserAddOrder.css';
+import './UserAddOrder.less';
 
 
 

@@ -1,7 +1,7 @@
 import { Card, Col, Pagination, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { getAllBillOneUser } from './../../../services/getAllBillOneUser';
-import './UserViewBills.css';
+import './UserViewBills.less';
 
 function UserViewBills() {
 
