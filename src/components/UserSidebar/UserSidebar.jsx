@@ -41,7 +41,14 @@ const UserSidebar = (props) => {
         navigate('/user/view-bills', { replace: true });
       },
     },
-    { label: 'Yêu cầu chỉnh sửa', key: '3', icon: <BsChatRight /> },
+    { 
+      label: 'Yêu cầu chỉnh sửa', 
+      key: '3', 
+      icon: <BsChatRight />,
+      onClick: () => {
+        navigate('/user/update-bill', { replace: true });
+      },
+    },
     {
       label: 'Sổ địa chỉ',
       key: 'sub1',

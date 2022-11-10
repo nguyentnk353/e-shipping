@@ -14,6 +14,8 @@ import { RolesAuthRoute } from './context/RolesAuthRoute';
 import { Suspense } from 'react';
 import UserViewBills from './pages/user/UserViewBills/UserViewBills';
 import UserAccount from './pages/user/UserAccount/UserAccount';
+import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
+import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 
 function App() {
   return (
@@ -45,6 +47,8 @@ function App() {
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
           <Route path='account' element={<UserAccount />} />
+          <Route path='update-bill' element={<UserUpdateBill />} />
+          <Route path='action-update-bill' element={<UserUpdateAction />} />
         </Route>
       </Routes>
     </div>
