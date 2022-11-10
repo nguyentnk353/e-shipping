@@ -1,12 +1,13 @@
-import React from "react";
-import { UserNavbar } from "../../../components/UserNavbar/UserNavbar";
-import { UserSidebar } from "../../../components/UserSidebar/UserSidebar";
+import React from 'react';
+import LogoutFunction from '../../../components/LogoutFunction/LogoutFunction';
+// import { Logout } from '../../../components/LogoutFunction/LogoutFunction';
 
 const UserHome = () => {
+  const logout = LogoutFunction();
   return (
     <div>
-      <UserNavbar/>
-      <UserSidebar />
+      UserHome
+      <button onClick={logout}>logout</button>
     </div>
   );
 };

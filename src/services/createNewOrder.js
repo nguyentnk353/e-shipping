@@ -22,13 +22,12 @@ export function createNewOrder(props) {
     CategoryId: props.CategoryId,
     Weight: props.Weight,
     Price: props.Price,
-    UserId: 1,
+    UserId: props.UserId,
     StartDepartmentId: props.StartDepartmentId,
     DestinationDepartmentId: props.DestinationDepartmentId,
-    Address: props.Address
-  }
+    Address: props.Address,
+  };
 
-  // console.log(props)
   return axios
     .post(url, data)
     .then((response) => console.log(response))

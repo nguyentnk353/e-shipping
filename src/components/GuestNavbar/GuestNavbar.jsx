@@ -2,15 +2,25 @@ import React from 'react';
 import { Select, Button } from 'antd';
 import { AiFillCaretDown, AiFillPhone } from 'react-icons/ai';
 import { BsFillTelephoneFill } from 'react-icons/bs';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath, useNavigate } from 'react-router-dom';
 import eShippingLogo from '../../assets/images/e-shipping-logo.png';
 import './GuestNavbar.less';
 const { Option } = Select;
 export const GuestNavbar = () => {
+  const navigate = useNavigate();
+  function logoOnclick() {
+    navigate('/home', { replace: true });
+  }
   return (
     <div className='navbar-user'>
       <ul className='nav-left-right'>
-        <img src={eShippingLogo} alt='logo' className='nav-logo' />
+        <img
+          src={eShippingLogo}
+          alt='logo'
+          className='nav-logo'
+          onClick={logoOnclick}
+          style={{ cursor: 'pointer' }}
+        />
         <div className='dropdown'>
           <a className='dropbtn'>
             Giao nhận hàng <AiFillCaretDown />
@@ -45,12 +55,12 @@ export const GuestNavbar = () => {
           <span className='phone-number'>0905146956</span>
         </a>
         <div className='nav-login'>
-          <a>
+          <Link to='/login'>
             <Button>Đăng nhập</Button>
-          </a>
-          <a>
+          </Link>
+          <Link to='/register'>
             <Button type='primary'>Đăng Ký</Button>
-          </a>
+          </Link>
         </div>
       </ul>
     </div>
