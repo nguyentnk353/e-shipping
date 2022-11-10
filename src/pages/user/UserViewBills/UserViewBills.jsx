@@ -12,7 +12,10 @@ function UserViewBills() {
     userId: user.Id,
   });
 
-  const [getParams, setGetParams] = useState({});
+  const [getParams, setGetParams] = useState({
+    items: [],
+    totalRecord: 1
+  });
 
   useEffect(() => {
     getAllBillOneUser(getPage)
@@ -30,7 +33,7 @@ function UserViewBills() {
       userId: user.Id,
     });
   };
-  const total = ((getParams.totalRecord * 10) % 4) + 10;
+  let total = Math.ceil(getParams.totalRecord / 4) * 10;
   return (
     <div className='page-view-bill'>
       <div className='all-card-wrapper'>

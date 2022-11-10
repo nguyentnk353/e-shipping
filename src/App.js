@@ -39,7 +39,7 @@ function App() {
             </Suspense>
           }
         >
-          <Route path='home' element={<UserHome />} />
+          <Route path='home' element={<UserHome/>} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
