@@ -33,7 +33,14 @@ const UserSidebar = (props) => {
         navigate('/user/home', { replace: true });
       },
     },
-    { label: 'Danh sách vận đơn', key: '2', icon: <CiViewList /> },
+    {
+      label: 'Danh sách vận đơn',
+      key: '2',
+      icon: <CiViewList />,
+      onClick: () => {
+        navigate('/user/view-bills', { replace: true });
+      },
+    },
     { label: 'Yêu cầu chỉnh sửa', key: '3', icon: <BsChatRight /> },
     {
       label: 'Sổ địa chỉ',

@@ -43,20 +43,26 @@ const Register = () => {
   return (
     <div>
       <div className='register-background'>
-        <div className='login-card'>
-          <div className='login-card-head'>
-            <div className='login-card-head-left'>
-              <h1>Đăng ký</h1>
+        <div className='register-card'>
+          <div className='register-card-head'>
+            <div className='register-card-head-left'>
+              <h2>Đăng ký</h2>
               <h4>
                 Chào mừng đến với <br />
                 E-shipping
               </h4>
             </div>
             {/* <div className='login-card-head-right'> */}
-            <img src={logo} alt='Pet transport logo' className='login-logo' />
+            <img
+              src={logo}
+              alt='Pet transport logo'
+              className='register-logo'
+              onClick={() => navigate('/home', { replace: true })}
+              style={{ cursor: 'pointer' }}
+            />
             {/* </div> */}
           </div>
-          <div className='login-input'>
+          <div className='register-input'>
             <Form name='basic' autoComplete='off' onFinish={handleFinish}>
               <Form.Item
                 name='fullName'
@@ -175,7 +181,7 @@ const Register = () => {
                 <Button
                   type='primary'
                   htmlType='submit'
-                  className='login-form-button'
+                  className='register-form-button'
                 >
                   Đăng ký
                 </Button>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select } from 'antd';
 import { Card, List } from 'antd';
-import './GuestCheckCharges.css';
+import './GuestCheckCharges.less';
 import { InputNumber, Space } from 'antd';
 import anhBus from '../../../assets/images/dt.png';
 import data from '../../../mocks/mockData.json'

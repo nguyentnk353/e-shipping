@@ -3,11 +3,10 @@ import React from 'react';
 import logo from '../../../assets/images/e-shipping-logo.png';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import jwt_decode from 'jwt-decode';
-import './Login.less';
 import { login } from './../../../services/login';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-
+import './Login.less';
 const Login = () => {
   const navigate = useNavigate();
   const [invalidLogin, setInvalideLogin] = useState(false);
@@ -45,11 +44,17 @@ const Login = () => {
       <div className='login-card'>
         <div className='login-card-head'>
           <div className='login-card-head-left'>
-            <h1>Đăng nhập</h1>
+            <h2>Đăng nhập</h2>
             <h4>Chào mừng trở lại</h4>
           </div>
 
-          <img src={logo} alt='Pet transport logo' className='login-logo' />
+          <img
+            src={logo}
+            alt='Pet transport logo'
+            className='login-logo'
+            onClick={() => navigate('/home', { replace: true })}
+            style={{ cursor: 'pointer' }}
+          />
         </div>
         {invalidLogin && (
           <Alert
