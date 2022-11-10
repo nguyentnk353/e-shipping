@@ -1,15 +1,12 @@
 import { CaretDownFilled, CodeSandboxSquareFilled, UserOutlined } from '@ant-design/icons';
 import { useMount } from 'ahooks';
 import { Col, Form, Modal, Row, Select } from 'antd';
-import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import UserTest from '../../../components/UserNavbar/UserTest/UserTest';
-import UserTest2 from '../../../components/UserNavbar/UserTest/UserTest2';
 import { caculatePrice } from '../../../services/caculatePrice';
 import { createNewOrder } from './../../../services/createNewOrder';
 import { getAllCategories } from './../../../services/getAllCategories';
 import { getAllProvice } from './../../../services/getAllProvice';
-import './UserAddOrder.css';
+import './UserAddOrder.less';
 
 
 
@@ -240,11 +237,8 @@ function UserAddOrder() {
 
     return (
 
-        <div>
-            <UserTest />
             <form id='form-create-new-order'>
-                <div style={{ display: 'flex' }}>
-                    <UserTest2 />
+                <div>
                     <div className='page-add-order'>
                         <div className='frame-sender-receiver'>
                             <div>
@@ -517,7 +511,6 @@ function UserAddOrder() {
                     </div>
                 </div>
             </form>
-        </div>
     )
 
 }
