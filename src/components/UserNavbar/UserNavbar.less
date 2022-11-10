@@ -1,73 +1,49 @@
-.nav {
-  background-color: #212122;
+.nav-user {
+  background-color: #001529;
   color: white;
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  min-height: 70px;
-  border-bottom: solid 2px #f4f4f4;
-}
-
-.site-title {
-  font-size: 2rem;
-}
-
-.nav .ul-left {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 3rem;
-}
-.nav .ul-left {
-  padding-left: 5rem;
-}
-.nav .ul-left a {
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0;
-}
-.nav .ul-left li {
-  font-weight: 700;
-}
-.nav .ul-left img {
-  height: 50px;
-  width: auto;
-}
-.nav .ul-left li.active {
-  color: #1890ff;
-}
-
-.nav .ul-left li:hover {
-  color: #1890ff;
-}
-
-.nav .ul-right {
-  padding-right: 2rem;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.nav .ul-right input[type=search] {
-  float: right;
-  padding: 10px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-  width: auto;
-}
-
-.nav .ul-right .button[type=submit] {
-  background-color: #212122;
-}
-
-.nav .ul-right img {
-  height: 50px;
+  height: 68px;
+  padding: 0 1rem;
+  .nav-align {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+    .nav-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      min-height: 56px;
+      padding: 0 1rem;
+      margin-bottom: 0;
+      list-style: none;
+      gap: 1rem;
+      .nav-arrow {
+        height: 35px;
+        width: auto;
+        cursor: pointer;
+      }
+      .nav-info {
+        min-width: 170px;
+        p {
+          display: flex;
+          gap: 0.5rem;
+          color: white;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin-bottom: 0;
+          font-weight: 600;
+          font-size: 16px;
+          .nav-info-avatar {
+            height: 30px;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
 }

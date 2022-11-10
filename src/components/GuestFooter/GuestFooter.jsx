@@ -39,14 +39,14 @@ const GuestFooter = () => {
             <div className='footer-bottom-left'>
               <img src={logo} alt='logo' />
               <p>
-                <b>Trụ sở chính:</b> 18A Cộng Hòa, Phường 12, Quận TânBình, Tp.
-                Hồ Chí Minh
+                <b>Trụ sở chính:</b> Lô E2a-7, Đường D1, Đ. D1, Long Thạnh Mỹ,
+                Thành Phố Thủ Đức, Thành phố Hồ Chí Minh
                 <br />
                 <b>Giờ làm việc:</b> 7:00 - 20:00
                 <br />
-                <b>Email:</b> nhattin@ntlogistics.vn
+                <b>Email:</b> daihoc.hcm@fpt.edu.vn
                 <br />
-                <b>Hotline:</b> 1900 63 6688
+                <b>Hotline:</b> (028) 7300 5588
               </p>
               <img src={checkFooter} alt='Check footer' />
             </div>
