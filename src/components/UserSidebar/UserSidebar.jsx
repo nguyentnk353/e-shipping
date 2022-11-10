@@ -5,7 +5,7 @@ import './UserSidebar.less';
 import { useNavigate } from 'react-router';
 
 
-function UserSidenav() {
+export const UserSidebar = () => {
 
     const navigate = useNavigate();
 
@@ -40,4 +40,3 @@ function UserSidenav() {
         </SideNav.Nav>
     </SideNav>
 }
-export default UserSidenav;
