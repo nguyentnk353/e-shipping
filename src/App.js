@@ -13,6 +13,7 @@ import Register from './pages/login-register/Register/Register';
 import { RolesAuthRoute } from './context/RolesAuthRoute';
 import { Suspense } from 'react';
 import UserViewBills from './pages/user/UserViewBills/UserViewBills';
+import UserAccount from './pages/user/UserAccount/UserAccount';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
+          <Route path='account' element={<UserAccount />} />
         </Route>
       </Routes>
     </div>

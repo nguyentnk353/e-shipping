@@ -82,7 +82,14 @@ const UserSidebar = (props) => {
     },
     { label: 'Phản ánh/ Khiếu nại', key: '15', icon: <BiError /> },
     { label: 'Quản lý cửa hàng', key: '16', icon: <BiStore /> },
-    { label: 'Cấu hình tài khoản', key: '17', icon: <IoPersonOutline /> },
+    { 
+      label: 'Cấu hình tài khoản',
+      key: '17',
+      icon: <IoPersonOutline />,
+      onClick: () => {
+        navigate('/user/account', { replace: true });
+      },
+    },
   ];
 
   return (
