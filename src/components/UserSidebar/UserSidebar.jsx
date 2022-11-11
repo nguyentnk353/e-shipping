@@ -76,7 +76,13 @@ const UserSidebar = (props) => {
       key: 'sub2',
       icon: <TfiPieChart />,
       children: [
-        { label: 'Thống kê vận đơn', key: '7' },
+        { 
+          label: 'Thống kê vận đơn', 
+          key: '7',
+          onClick: () => {
+            navigate('/user/statistic-bill', { replace: true });
+          }
+        },
         { label: 'Thống kê COD', key: '8' },
         { label: 'Thống kê cước', key: '9' },
         { label: 'Thống kê đơn từ file', key: '10' },
