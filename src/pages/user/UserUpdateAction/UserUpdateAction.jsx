@@ -16,7 +16,8 @@ function UserUpdateAction() {
   const dropIcon = <CaretDownFilled />;
 
   const user = JSON.parse(localStorage.getItem('loginUser'));
-  const billId = localStorage.getItem('updateId');
+  const oldBill =  JSON.parse(localStorage.getItem('updateBill'));
+
 
   const [getCategories, setGetCategories] = useState([]);
   const [getProvices, setGetProvices] = useState([]);
@@ -33,22 +34,22 @@ function UserUpdateAction() {
     Address: '',
   });
   const [bill, setBill] = useState({
-    BillId: billId,
+    BillId: oldBill.billId,
     NameSender: user.Name,
     PhoneSender: '',
     NameReceive: '',
     PhoneReceive: '',
-    Description: '',
-    CategoryId: 0,
-    CategoryName: '',
-    Weight: 0,
-    Price: 0,
+    Description: oldBill.description,
+    CategoryId: oldBill.categoryId,
+    CategoryName: oldBill.categoryName,
+    Weight: oldBill.weight,
+    Price: oldBill.price,
     UserId: user.Id,
-    StartDepartmentId: 0,
-    StartDepartmentName: '',
-    DestinationDepartmentId: 0,
-    DestinationDepartmentName: '',
-    Address: '',
+    StartDepartmentId: oldBill.startDepartmentId,
+    StartDepartmentName: oldBill.startDepartmentAddress,
+    DestinationDepartmentId:  oldBill.destinationDepartmentId,
+    DestinationDepartmentName:  oldBill.destinationDepartmentAddress,
+    Address: oldBill.address,
     Status: 'Active',
   });
 
@@ -394,8 +395,9 @@ function UserUpdateAction() {
                     <div style={{ fontWeight: '480', margin: '10px 0' }}>
                       <Select
                         showSearch
-                        placeholder='Tỉnh/Thành phố'
+                        placeholder={oldBill.startDepartmentAddress}
                         suffixIcon={dropIcon}
+                        defaultValue={oldBill.startDepartmentAddress}
                         size='large'
                         onSearch={onSearch}
                         required
@@ -438,6 +440,7 @@ function UserUpdateAction() {
                           <Select
                             showSearch
                             placeholder='Tỉnh/Thành phố'
+                            defaultValue={oldBill.destinationDepartmentAddress}
                             suffixIcon={dropIcon}
                             size='large'
                             onSearch={onSearch}
@@ -470,6 +473,7 @@ function UserUpdateAction() {
                           className='input-every-2'
                           placeholder='Địa chỉ chi tiết'
                           //    value={bill.Address}
+                          defaultValue={oldBill.address}
                           onChange={(event) => handleChange(event, 'Address')}
                         />
                       </div>
@@ -489,6 +493,7 @@ function UserUpdateAction() {
                             className='input-new-5-7-9'
                             suffixIcon={dropIcon}
                             placeholder='Chọn loại hàng hóa'
+                            defaultValue={oldBill.categoryName}
                             size='large'
                             onSearch={onSearch}
                             style={{
@@ -529,6 +534,7 @@ function UserUpdateAction() {
                           type='number'
                           className='input-every 1'
                           placeholder='Khối lượng'
+                          defaultValue={oldBill.weight}
                           // value={bill.Weight}
                           onChange={(event) => handleChange(event, 'Weight')}
                           onBlur={(event) =>

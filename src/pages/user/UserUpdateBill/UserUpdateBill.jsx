@@ -1,21 +1,45 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './UserUpdateBill.less';
 import Image1 from '../../../assets/images/UserUpdateBill1.png';
 import Image2 from '../../../assets/images/UserUpdateBill2.png';
 import { useNavigate } from 'react-router-dom';
-
-import UserAddOrder from './../UserAddOrder/UserAddOrder';
+import { getBillById } from './../../../services/getBillById';
 
 
 function UserUpdateBill() {
     const [getBillId, setGetBillId] = useState('');
-    
+    const [init, setInit] = useState(null);
     const navigate = useNavigate();
-    const handleSubmit = (event)=>{
-        localStorage.setItem('updateId', getBillId);
+
+    const handleSubmit = (event) => {
+
+        if (getBillId === '') {
+            alert('Vui lòng nhập mã đơn hàng');
+        } else {
+            getBillById(getBillId)
+                .then((response) => {
+                    if (response) {
+                        setInit(response);
+                    } else {
+                        alert('Mã đơn hàng sai!');
+                    }
+                })
+                .catch((err) => console.log(err))
+        }
+    }
+
+    useEffect(() => {
+        if (init != null) {
+            actionUpdateBill();
+        }
+    }, [init])
+
+    const actionUpdateBill = () => {
+        localStorage.setItem('updateBill', JSON.stringify(init));
         navigate('/user/action-update-bill', { replace: true });
     }
-    const handleChange = (event)=>{
+
+    const handleChange = (event) => {
         setGetBillId(event.target.value);
     }
     return (
@@ -31,7 +55,7 @@ function UserUpdateBill() {
                     }
                 />
                 <button className='btn-update-bill'
-                onClick={(event) => handleSubmit(event)}
+                    onClick={(event) => handleSubmit(event)}
                 >
                     Thay đổi
                 </button>
