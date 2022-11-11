@@ -54,8 +54,20 @@ const UserSidebar = (props) => {
       key: 'sub1',
       icon: <BiBookBookmark />,
       children: [
-        { label: 'Điểm lấy hàng', key: '4' },
-        { label: 'Điểm trả hàng', key: '5' },
+        { 
+          label: 'Điểm lấy hàng',
+          key: '4', 
+          onClick: () => {
+            navigate('/user/view-start-address', { replace: true });
+          } 
+        },
+        { 
+          label: 'Điểm trả hàng', 
+          key: '5',
+          onClick: () => {
+            navigate('/user/view-end-address', { replace: true });
+          }
+        },
         { label: 'Tạo từ file', key: '6' },
       ],
     },

@@ -16,6 +16,7 @@ import UserViewBills from './pages/user/UserViewBills/UserViewBills';
 import UserAccount from './pages/user/UserAccount/UserAccount';
 import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
+import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 
 function App() {
   return (
@@ -49,6 +50,8 @@ function App() {
           <Route path='account' element={<UserAccount />} />
           <Route path='update-bill' element={<UserUpdateBill />} />
           <Route path='action-update-bill' element={<UserUpdateAction />} />
+          <Route path='view-start-address' element={<UserListStartAddress />} />
+          <Route path='view-end-address' element={<UserListStartAddress />} />
         </Route>
       </Routes>
     </div>
