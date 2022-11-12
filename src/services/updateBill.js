@@ -1,20 +1,25 @@
 import axios from 'axios';
-
-export function updateBill(bill) {
+export function updateBill(props) {
   const url = 'https://deliver-store.tk/api/v1/bills';
 
+  const data = {
+    BillId: props.BillId,
+    Description: props.Description,
+    CategoryId: props.CategoryId,
+    Weight: props.Weight,
+    Price: props.Price,
+    UserId: props.UserId,
+    StartDepartmentId: props.StartDepartmentId,
+    DestinationDepartmentId: props.DestinationDepartmentId,
+    Address: props.Address,
+    Status: 'Active',
+  };
+
   return axios
-    .put(url, {
-      billId: bill.billId,
-      description: bill.description,
-      categoryId: bill.categoryId,
-      weight: bill.weight,
-      price: bill.price,
-      userId: bill.userId,
-      startDepartmentId: bill.startDepartmentId,
-      destinationDepartmentId: bill.destinationDepartmentId,
-      address: bill.address,
-      status: bill.status,
+    .put(url, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
     .then((response) => response.data)
     .catch((err) => console.log(err));

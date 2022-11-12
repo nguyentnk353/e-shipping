@@ -14,8 +14,8 @@ import './ManagerHome.less';
 import { useMount } from 'ahooks';
 import { managerGetBillByID } from '../../../services/managerGetBillByID';
 import { useState, useEffect } from 'react';
-import { updateBill } from './../../../services/updateBill';
 import { deleteBill } from '../../../services/deleteBill';
+import { managerUpdateBill } from '../../../services/managerUpdateBill';
 
 const { Search } = Input;
 
@@ -149,7 +149,7 @@ const ManagerHome = () => {
     setParam({ ...param, PageIndex: 1, PageSize: 5 });
   }
   const handleOk = () => {
-    updateBill(bill)
+    managerUpdateBill(bill)
       .then((data) => {
         notification.open({
           message: 'Cập nhập bill thành công',

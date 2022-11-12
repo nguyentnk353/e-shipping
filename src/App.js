@@ -16,6 +16,11 @@ import UserViewBills from './pages/user/UserViewBills/UserViewBills';
 import ManagerHome from './pages/manager/ManagerHome/ManagerHome';
 import LoginEmployee from './pages/login-register/LoginEmployee/LoginEmployee';
 import Manager from './pages/manager/Manager/Manager';
+import UserAccount from './pages/user/UserAccount/UserAccount';
+import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
+import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
+import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
+import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
 
 function App() {
   return (
@@ -47,6 +52,12 @@ function App() {
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
+          <Route path='account' element={<UserAccount />} />
+          <Route path='update-bill' element={<UserUpdateBill />} />
+          <Route path='action-update-bill' element={<UserUpdateAction />} />
+          <Route path='view-start-address' element={<UserListStartAddress />} />
+          <Route path='view-end-address' element={<UserListStartAddress />} />
+          <Route path='statistic-bill' element={<UserStatisticBill />} />
         </Route>
         <Route
           path='/manager'
