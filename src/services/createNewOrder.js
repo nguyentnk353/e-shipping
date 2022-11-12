@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 export function createNewOrder(props) {
   const url = 'https://deliver-store.tk/api/v1/bills';
   // const param = {
@@ -28,7 +29,7 @@ export function createNewOrder(props) {
     Address: props.Address,
   };
 
-  return axios
+  return axiosInstance
     .post(url, data)
     .then((response) => console.log(response))
     .catch((err) => console.log(err));

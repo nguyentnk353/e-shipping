@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
 export function register(props) {
   const url = 'https://deliver-store.tk/api/v1/customer/register';
@@ -11,7 +12,7 @@ export function register(props) {
     email: props.email,
     phone: props.phone,
   };
-  return axios
+  return axiosInstance
     .post(url, data)
     .then((response) => response.data)
     .catch((err) => err.response.data);

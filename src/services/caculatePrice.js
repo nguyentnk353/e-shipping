@@ -1,8 +1,9 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 export function caculatePrice(props) {
     const url = 'https://deliver-store.tk/api/v1/paging/bills/pricefororder';
      
-    return axios
+    return axiosInstance
       .get(url, {
         params: {
             categoryId: props.CategoryId,
