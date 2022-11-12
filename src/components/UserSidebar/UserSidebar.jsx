@@ -41,14 +41,33 @@ const UserSidebar = (props) => {
         navigate('/user/view-bills', { replace: true });
       },
     },
-    { label: 'Yêu cầu chỉnh sửa', key: '3', icon: <BsChatRight /> },
+    { 
+      label: 'Yêu cầu chỉnh sửa', 
+      key: '3', 
+      icon: <BsChatRight />,
+      onClick: () => {
+        navigate('/user/update-bill', { replace: true });
+      },
+    },
     {
       label: 'Sổ địa chỉ',
       key: 'sub1',
       icon: <BiBookBookmark />,
       children: [
-        { label: 'Điểm lấy hàng', key: '4' },
-        { label: 'Điểm trả hàng', key: '5' },
+        { 
+          label: 'Điểm lấy hàng',
+          key: '4', 
+          onClick: () => {
+            navigate('/user/view-start-address', { replace: true });
+          } 
+        },
+        { 
+          label: 'Điểm trả hàng', 
+          key: '5',
+          onClick: () => {
+            navigate('/user/view-end-address', { replace: true });
+          }
+        },
         { label: 'Tạo từ file', key: '6' },
       ],
     },
@@ -57,7 +76,13 @@ const UserSidebar = (props) => {
       key: 'sub2',
       icon: <TfiPieChart />,
       children: [
-        { label: 'Thống kê vận đơn', key: '7' },
+        { 
+          label: 'Thống kê vận đơn', 
+          key: '7',
+          onClick: () => {
+            navigate('/user/statistic-bill', { replace: true });
+          }
+        },
         { label: 'Thống kê COD', key: '8' },
         { label: 'Thống kê cước', key: '9' },
         { label: 'Thống kê đơn từ file', key: '10' },
@@ -82,7 +107,14 @@ const UserSidebar = (props) => {
     },
     { label: 'Phản ánh/ Khiếu nại', key: '15', icon: <BiError /> },
     { label: 'Quản lý cửa hàng', key: '16', icon: <BiStore /> },
-    { label: 'Cấu hình tài khoản', key: '17', icon: <IoPersonOutline /> },
+    { 
+      label: 'Cấu hình tài khoản',
+      key: '17',
+      icon: <IoPersonOutline />,
+      onClick: () => {
+        navigate('/user/account', { replace: true });
+      },
+    },
   ];
 
   return (

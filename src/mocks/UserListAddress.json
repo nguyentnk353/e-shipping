@@ -1,0 +1,166 @@
+{
+    "address": [
+        {
+          "departmentId": 1,
+          "address": "995G+F78, TT. Phú Hòa, Thoại Sơn, An Giang, Việt Nam",
+          "statusId": 1,
+          "provinceId": 1,
+          "provinceName": "An Giang",
+          "westGps": 10.36,
+          "northGps": 105.37
+        },
+        {
+          "departmentId": 2,
+          "address": "8P6H+H9Q, Nguyễn Văn Linh, Phường 1, Bạc Liêu, Việt Nam",
+          "statusId": 1,
+          "provinceId": 2,
+          "provinceName": "Bạc Liêu",
+          "westGps": 9.31,
+          "northGps": 105.27
+        },
+        {
+          "departmentId": 3,
+          "address": "Đường Nguyễn Văn Cánh, Phú Hưng, Bến Tre, Việt Nam",
+          "statusId": 1,
+          "provinceId": 3,
+          "provinceName": "Bến Tre",
+          "westGps": 10.26,
+          "northGps": 106.28
+        },
+        {
+          "departmentId": 4,
+          "address": "Dĩ An, Thành phố Hồ Chí Minh, Việt Nam",
+          "statusId": 1,
+          "provinceId": 4,
+          "provinceName": "Bình Dương",
+          "westGps": 10.88,
+          "northGps": 106.74
+        },
+        {
+          "departmentId": 5,
+          "address": "GX67+J6Q, Tân Phước, Đồng Phú, Bình Phước, Việt Nam",
+          "statusId": 1,
+          "provinceId": 5,
+          "provinceName": "Bình Phước",
+          "westGps": 11.51,
+          "northGps": 106.96
+        },
+        {
+          "departmentId": 6,
+          "address": "46J2+98C, Hòa Thanh, Thành phố Cà Mau, Cà Mau, Việt Nam",
+          "statusId": 1,
+          "provinceId": 6,
+          "provinceName": "Cà Mau",
+          "westGps": 9.13,
+          "northGps": 105.24
+        },
+        {
+          "departmentId": 7,
+          "address": "84 Đ. Mậu Thân, An Hoà, Ninh Kiều, Cần Thơ, Việt Nam",
+          "statusId": 1,
+          "provinceId": 7,
+          "provinceName": "Cần Thơ",
+          "westGps": 10.04,
+          "northGps": 105.76
+        },
+        {
+          "departmentId": 8,
+          "address": "1135 Đ. Nguyễn Ái Quốc, Khu Phố 2, Thành phố Biên Hòa, Đồng Nai, Việt Nam",
+          "statusId": 1,
+          "provinceId": 8,
+          "provinceName": "Đồng Nai",
+          "westGps": 10.97,
+          "northGps": 106.85
+        },
+        {
+          "departmentId": 9,
+          "address": "GPGG+Q3F, Chợ Đường Thét, Mỹ Quý, Tháp Mười, Đồng Tháp, Việt Nam",
+          "statusId": 1,
+          "provinceId": 9,
+          "provinceName": "Đồng Tháp",
+          "westGps": 10.53,
+          "northGps": 105.72
+        },
+        {
+          "departmentId": 10,
+          "address": "WPFF+J7P, H., QL61, Thị trấn Cái Tắc, Châu Thành A, Hậu Giang, Việt Nam",
+          "statusId": 1,
+          "provinceId": 10,
+          "provinceName": "Hậu Giang",
+          "westGps": 9.93,
+          "northGps": 105.72
+        },
+        {
+          "departmentId": 11,
+          "address": "Đường D1, Long Thạnh Mỹ, Thủ Đức, Thành phố Hồ Chí Minh",
+          "statusId": 1,
+          "provinceId": 11,
+          "provinceName": "TP Hồ Chí Minh",
+          "westGps": 10.84,
+          "northGps": 106.81
+        },
+        {
+          "departmentId": 12,
+          "address": "239J+W6Q, Hai Bà Trưng, Vĩnh Thanh, Rạch Giá, Kiên Giang, Việt Nam",
+          "statusId": 1,
+          "provinceId": 12,
+          "provinceName": "Kiên Giang",
+          "westGps": 10.02,
+          "northGps": 105.08
+        },
+        {
+          "departmentId": 13,
+          "address": "J8FM+GQX, Mỹ Lạc, Thủ Thừa, Long An, Việt Nam",
+          "statusId": 1,
+          "provinceId": 13,
+          "provinceName": "Long An",
+          "westGps": 10.62,
+          "northGps": 106.33
+        },
+        {
+          "departmentId": 14,
+          "address": "JX29+7F6, Phường 2, Sóc Trăng, Việt Nam",
+          "statusId": 1,
+          "provinceId": 14,
+          "provinceName": "Sóc Trăng",
+          "westGps": 9.6,
+          "northGps": 105.96
+        },
+        {
+          "departmentId": 15,
+          "address": "368 Trường Chinh, Khu Phố 6, Tây Ninh, 80108, Việt Nam",
+          "statusId": 1,
+          "provinceId": 15,
+          "provinceName": "Tây Ninh",
+          "westGps": 11.31,
+          "northGps": 106.11
+        },
+        {
+          "departmentId": 16,
+          "address": "TT. Cái Bè, Cái Bè, Tiền Giang, Việt Nam",
+          "statusId": 1,
+          "provinceId": 16,
+          "provinceName": "Tiền Giang",
+          "westGps": 10.35,
+          "northGps": 106.03
+        },
+        {
+          "departmentId": 17,
+          "address": "Phường 3, Trà Vinh, Việt Nam",
+          "statusId": 1,
+          "provinceId": 17,
+          "provinceName": "Trà Vinh",
+          "westGps": 9.93,
+          "northGps": 106.34
+        },
+        {
+          "departmentId": 18,
+          "address": "7W5V+P4C, Đ. Phạm Hùng, Phường 9, Vĩnh Long, Việt Nam",
+          "statusId": 1,
+          "provinceId": 18,
+          "provinceName": "Vĩnh Long",
+          "westGps": 10.25,
+          "northGps": 106.94
+        }
+      ]
+}

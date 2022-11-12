@@ -13,6 +13,11 @@ import Register from './pages/login-register/Register/Register';
 import { RolesAuthRoute } from './context/RolesAuthRoute';
 import { Suspense } from 'react';
 import UserViewBills from './pages/user/UserViewBills/UserViewBills';
+import UserAccount from './pages/user/UserAccount/UserAccount';
+import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
+import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
+import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
+import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
 
 function App() {
   return (
@@ -39,10 +44,16 @@ function App() {
             </Suspense>
           }
         >
-          <Route path='home' element={<UserHome />} />
+          <Route path='home' element={<UserHome/>} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
+          <Route path='account' element={<UserAccount />} />
+          <Route path='update-bill' element={<UserUpdateBill />} />
+          <Route path='action-update-bill' element={<UserUpdateAction />} />
+          <Route path='view-start-address' element={<UserListStartAddress />} />
+          <Route path='view-end-address' element={<UserListStartAddress />} />
+          <Route path='statistic-bill' element={<UserStatisticBill />} />
         </Route>
       </Routes>
     </div>
