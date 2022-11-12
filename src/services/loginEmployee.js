@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
 export function loginEmployee(props) {
   const url = 'https://deliver-store.tk/api/v1/employee/authenticate';
@@ -6,7 +7,7 @@ export function loginEmployee(props) {
   const Password = props.password;
   const postData = {};
   const error = { error: 'login-fail' };
-  return axios
+  return axiosInstance
     .post(url, postData, {
       params: {
         loginName: LoginName,
