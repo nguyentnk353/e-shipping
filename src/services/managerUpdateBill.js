@@ -1,9 +1,10 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 
 export function managerUpdateBill(bill) {
   const url = 'https://deliver-store.tk/api/v1/bills';
 
-  return axios
+  return axiosInstance
     .put(url, {
       billId: bill.billId,
       description: bill.description,
