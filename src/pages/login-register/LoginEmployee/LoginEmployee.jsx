@@ -3,19 +3,19 @@ import React from 'react';
 import logo from '../../../assets/images/e-shipping-logo.png';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import jwt_decode from 'jwt-decode';
-import { login } from './../../../services/login';
+import { login } from '../../../services/login';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import './Login.less';
-
-const Login = () => {
+import { loginEmployee } from './../../../services/loginEmployee';
+import './LoginEmployee.less';
+const LoginEmployee = () => {
   const navigate = useNavigate();
   const [invalidLogin, setInvalideLogin] = useState(false);
   function alertClose() {
     setInvalideLogin(false);
   }
   function handleFinish(value) {
-    login(value)
+    loginEmployee(value)
       .then((data) => {
         const errLogin = 'Invalid Login';
 
@@ -29,7 +29,7 @@ const Login = () => {
               return navigate('/admin/home', { replace: true });
             case 'customer':
               return navigate('/user/home', { replace: true });
-            case 'manager':
+            case 'employee':
               return navigate('/manager/home', { replace: true });
             default:
               return null;
@@ -45,8 +45,8 @@ const Login = () => {
       <div className='login-card'>
         <div className='login-card-head'>
           <div className='login-card-head-left'>
-            <h2>Đăng nhập</h2>
-            <h4>Chào mừng trở lại</h4>
+            <h2>Đăng nhập dành cho nhân vên</h2>
+            {/* <h4>Chào mừng trở lại</h4> */}
           </div>
 
           <img
@@ -110,11 +110,8 @@ const Login = () => {
               </Button>
             </Form.Item>
             <Form.Item style={{ textAlign: 'center' }}>
-              Bạn chưa có tài khoản? <a href='/register'>Đăng ký ngay!</a>
-            </Form.Item>
-            <Form.Item style={{ textAlign: 'center' }}>
-              Bạn là nhân viên?{' '}
-              <a href='/login-employee'>Đăng nhập cho nhân viên!</a>
+              Bạn không phải là nhân viên?{' '}
+              <a href='/login'>Quay lại đăng nhập!</a>
             </Form.Item>
           </Form>
         </div>
@@ -123,4 +120,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginEmployee;
