@@ -13,6 +13,9 @@ import Register from './pages/login-register/Register/Register';
 import { RolesAuthRoute } from './context/RolesAuthRoute';
 import { Suspense } from 'react';
 import UserViewBills from './pages/user/UserViewBills/UserViewBills';
+import ManagerHome from './pages/manager/ManagerHome/ManagerHome';
+import LoginEmployee from './pages/login-register/LoginEmployee/LoginEmployee';
+import Manager from './pages/manager/Manager/Manager';
 import UserAccount from './pages/user/UserAccount/UserAccount';
 import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
@@ -31,6 +34,7 @@ function App() {
           <Route path='check-charge' element={<GuestCheckCharges />} />
         </Route>
         <Route path='/login' element={<Login />} />
+        <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
 
         {/* protected routes */}
@@ -44,7 +48,7 @@ function App() {
             </Suspense>
           }
         >
-          <Route path='home' element={<UserHome/>} />
+          <Route path='home' element={<UserHome />} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
@@ -54,6 +58,18 @@ function App() {
           <Route path='view-start-address' element={<UserListStartAddress />} />
           <Route path='view-end-address' element={<UserListStartAddress />} />
           <Route path='statistic-bill' element={<UserStatisticBill />} />
+        </Route>
+        <Route
+          path='/manager'
+          element={
+            <Suspense fallback={<></>}>
+              <RolesAuthRoute roles={['employee']}>
+                <Manager />
+              </RolesAuthRoute>
+            </Suspense>
+          }
+        >
+          <Route path='home' element={<ManagerHome />} />
         </Route>
       </Routes>
     </div>
