@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosInstance from './axiosInstance';
 export function updateBill(props) {
     const url = 'https://deliver-store.tk/api/v1/bills';
      
@@ -15,12 +16,8 @@ export function updateBill(props) {
         Status: "Active"
       };
     
-      return axios
-        .put(url, data,   {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
+      return axiosInstance
+        .put(url, data)
         .then((response) => response.data)
         .catch((err) => console.log(err));
     }
