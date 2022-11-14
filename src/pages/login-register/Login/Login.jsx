@@ -113,10 +113,11 @@ const Login = () => {
             <Form.Item style={{ textAlign: 'center' }}>
               Bạn chưa có tài khoản? <a href='/register'>Đăng ký ngay!</a>
             </Form.Item>
-            <Form.Item style={{ textAlign: 'center' }}>
-              Bạn là nhân viên?{' '}
-              <a href='/login-employee'>Đăng nhập cho nhân viên!</a>
-            </Form.Item>
+            <div className='login-employee-align'>
+              <a href='/login-employee' className='login-employee'>
+                Đăng nhập cho nhân viên
+              </a>
+            </div>
           </Form>
         </div>
       </div>
