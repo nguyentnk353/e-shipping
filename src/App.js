@@ -21,6 +21,8 @@ import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
+import Admin from './pages/admin/Admin/Admin';
+import AdminHome from './pages/admin/AdminHome/AdminHome';
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
-
+        <Route path='/admin' element={<Admin />}>
+          <Route path='home' element={<AdminHome />} />
+        </Route>
         {/* protected routes */}
         <Route
           path='/user'
@@ -71,6 +75,19 @@ function App() {
         >
           <Route path='home' element={<ManagerHome />} />
         </Route>
+        {/* <Route
+          path='/admin'
+          element={
+            <Suspense fallback={<></>}>
+              <RolesAuthRoute roles={['admin']}>
+                <Admin />
+              </RolesAuthRoute>
+            </Suspense>
+          }
+        >
+          <Route path='home' element={<AdminHome />} />
+        </Route> */}
+
       </Routes>
     </div>
   );
