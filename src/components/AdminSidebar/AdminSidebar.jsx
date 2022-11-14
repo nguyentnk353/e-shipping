@@ -5,7 +5,7 @@ import { CiViewList } from 'react-icons/ci';
 import { BiBookBookmark, BiError, BiStore } from 'react-icons/bi';
 import { TfiPieChart } from 'react-icons/tfi';
 import { IoPersonOutline } from 'react-icons/io5';
-import { FcManager } from 'react-icons/ai';
+import { AiOutlineTeam } from 'react-icons/ai';
 import eLogo from '../../assets/images/e-logo.png';
 import './AdminSidebar.less';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,7 @@ const AdminSidebar = (props) => {
     {
       label: 'Quản lý tài khoản',
       key: '1',
-      icon: <FcManager />,
+      icon: <AiOutlineTeam />,
       onClick: () => {
         navigate('/admin/home', { replace: true });
       },
