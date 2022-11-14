@@ -24,12 +24,14 @@ const LoginEmployee = () => {
         } else {
           const decoded = jwt_decode(data);
           localStorage.setItem('loginUser', JSON.stringify(decoded));
+          localStorage.setItem('token', data);
+
           switch (decoded.Role) {
-            case 'admin':
+            case '2':
               return navigate('/admin/home', { replace: true });
             case 'customer':
               return navigate('/user/home', { replace: true });
-            case 'employee':
+            case '1':
               return navigate('/manager/home', { replace: true });
             default:
               return null;
