@@ -38,9 +38,9 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/admin' element={<Admin />}>
+        {/* <Route path='/admin' element={<Admin />}>
           <Route path='home' element={<AdminHome />} />
-        </Route>
+        </Route> */}
         {/* protected routes */}
         <Route
           path='/user'
@@ -75,7 +75,7 @@ function App() {
         >
           <Route path='home' element={<ManagerHome />} />
         </Route>
-        {/* <Route
+        <Route
           path='/admin'
           element={
             <Suspense fallback={<></>}>
@@ -86,7 +86,7 @@ function App() {
           }
         >
           <Route path='home' element={<AdminHome />} />
-        </Route> */}
+        </Route>
 
       </Routes>
     </div>
