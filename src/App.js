@@ -22,6 +22,7 @@ import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
 import MissingPage from './pages/guest/MissingPage/MissingPage';
+import UserHome2 from './pages/user/UserHome2/UserHome2';
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
             </Suspense>
           }
         >
-          <Route path='home' element={<UserHome />} />
+          <Route path='home' element={<UserHome2 />} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />
