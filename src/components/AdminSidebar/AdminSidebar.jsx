@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { BsChatRight, BsSpeedometer2 } from 'react-icons/bs';
-import { CiViewList } from 'react-icons/ci';
-import { BiBookBookmark, BiError, BiStore } from 'react-icons/bi';
-import { TfiPieChart } from 'react-icons/tfi';
-import { IoPersonOutline } from 'react-icons/io5';
-import { AiOutlineTeam } from 'react-icons/ai';
+import { AiOutlineTeam, AiOutlineUserAdd } from 'react-icons/ai';
 import eLogo from '../../assets/images/e-logo.png';
 import './AdminSidebar.less';
 import { useNavigate } from 'react-router-dom';
@@ -32,6 +27,14 @@ const AdminSidebar = (props) => {
       icon: <AiOutlineTeam />,
       onClick: () => {
         navigate('/admin/home', { replace: true });
+      },
+    },
+    {
+      label: 'Tạo tài khoản',
+      key: '2',
+      icon: <AiOutlineUserAdd />,
+      onClick: () => {
+        navigate('/admin/create-new-employee', { replace: true });
       },
     },
     // {

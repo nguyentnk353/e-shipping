@@ -23,6 +23,7 @@ import UserListStartAddress from './pages/user/UserListStartAddress/UserListStar
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
 import Admin from './pages/admin/Admin/Admin';
 import AdminHome from './pages/admin/AdminHome/AdminHome';
+import AdminAddUser from './pages/admin/AdminAddUser/AdminAddUser';
 
 function App() {
   return (
@@ -79,13 +80,14 @@ function App() {
           path='/admin'
           element={
             <Suspense fallback={<></>}>
-              <RolesAuthRoute roles={['admin']}>
+              <RolesAuthRoute roles={['2']}>
                 <Admin />
               </RolesAuthRoute>
             </Suspense>
           }
         >
           <Route path='home' element={<AdminHome />} />
+          <Route path='create-new-employee' element={<AdminAddUser />} />
         </Route>
 
       </Routes>

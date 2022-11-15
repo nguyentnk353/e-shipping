@@ -11,32 +11,23 @@ import {
   notification,
 } from 'antd';
 import './AdminHome.less';
-import { useMount } from 'ahooks';
-import { managerGetBillByID } from '../../../services/managerGetBillByID';
+import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
 import { useState, useEffect } from 'react';
-import { deleteBill } from '../../../services/deleteBill';
-import { managerUpdateBill } from '../../../services/managerUpdateBill';
 import { getAllEmployee } from '../../../services/getAllEmployee';
+import { adminUpdateUser } from '../../../services/adminUpdateUser';
+import { adminDeleteUser } from '../../../services/adminDeleteUser';
 
 const { Search } = Input;
 
 const AdminHome = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [bill, setbill] = useState({});
   const [param, setParam] = useState({
     PageIndex: 1,
-    PageSize: 5,
+    PageSize: 10,
   });
   const [tableData, setTableData] = useState([]);
   const [tableTotal, setTableTotal] = useState(0);
-  const onSearch = (value) => {
-    if (value === '') {
-      setParam({ ...param, billid: 'empty' });
-    } else {
-      setParam({ ...param, billid: value });
-    }
-  };
   useEffect(() => {
     getAllEmployee(param)
       .then((data) => {
@@ -48,27 +39,27 @@ const AdminHome = () => {
       });
   }, [param]);
 
-
-  console.log(tableData);
-  // useMount(() => {
-  //   getAllEmployee()
-  //   .then((data) => {
-  //       setUser(data);
-  //   })
-  //   .catch((err) => console.log(err));
-  // })
+  const statusArray = [
+    {
+      value: 1,
+      label: 'Active'
+    },
+    {
+      value: 2,
+      label: 'InActive'
+    },
+  ]
 
   const columns = [
-    // {
-    //   title: 'UserID',
-    //   //   width: '15%',
-    //   dataIndex: 'userId',
-    //   key: 'userId',
-    //   fixed: 'left',
-    // },
+    {
+      title: 'EmployeeID',
+      //   width: '15%',
+      dataIndex: 'employeeId',
+      key: 'employeeId',
+      fixed: 'left',
+    },
     {
       title: 'FullName',
-
       dataIndex: 'fullName',
       key: '1',
     },
@@ -88,11 +79,43 @@ const AdminHome = () => {
       dataIndex: 'phone',
       key: '4',
     },
-
+    {
+      title: 'DepartmentID',
+      dataIndex: 'departmentId',
+      key: '5',
+    },
     {
       title: 'Department Name',
       dataIndex: 'departmentName',
-      key: '5',
+      key: '6',
+    },
+    {
+      title: 'Trạng thái',
+      dataIndex: 'statusId',
+      key: '7',
+      render: (data) => {
+        console.log(data)
+        switch (data) {
+          case 1:
+            return (
+              <Tag color='green' key={data}>
+                Active
+              </Tag>
+            );
+          case 0:
+            return (
+              <Tag color='red' key={data}>
+                InActive
+              </Tag>
+            );
+          default:
+            return (
+              <Tag color='magenta' key={data}>
+                Trạng thái không xác định
+              </Tag>
+            );
+        }
+      },
     },
     {
       title: 'Thao tác',
@@ -101,68 +124,61 @@ const AdminHome = () => {
       width: 180,
       render: (v, data) => (
         <Space size='small'>
-          <Button type='link' onClick={() => updateBillData(data)}>
+          <Button type='link' onClick={() => updateUserData(data)}>
             Update
           </Button>
-          <Button type='link' onClick={() => deleteBillData(data)}>
+          <Button type='link' onClick={() => deleteUserData(data)}>
             Delete
           </Button>
         </Space>
       ),
     },
   ];
-  function updateBillData(bill) {
+  function updateUserData(user) {
     setIsModalOpen(true);
-    setbill(bill);
+    setUser(user);
   }
 
-  function deleteBillData(data) {
-    deleteBill(data)
+  function deleteUserData(data) {
+    adminDeleteUser(data)
       .then((data) => {
         notification.open({
-          message: 'Cập nhập bill thành công',
+          message: 'Cập nhập User thành công',
         });
       })
       .catch((error) => {
         notification.open({
-          message: 'Cập nhập bill không thành công',
+          message: 'Cập nhập User không thành công',
           description: error,
         });
       });
-    setParam({ ...param, PageIndex: 1, PageSize: 5 });
+    setParam({ ...param, PageIndex: 1, PageSize: 8 });
   }
   const handleOk = () => {
-    managerUpdateBill(bill)
+    adminUpdateUser(user)
       .then((data) => {
         notification.open({
-          message: 'Cập nhập bill thành công',
+          message: 'Cập nhập user thành công',
+          icon: <CheckOutlined style={{ color: '#108ee9' }} />
         });
       })
       .catch((error) => {
         notification.open({
-          message: 'Cập nhập bill không thành công',
+          message: 'Cập nhập user không thành công',
           description: error,
+          icon: <CloseOutlined style={{ color: '#108ee9' }} />
         });
       });
     setIsModalOpen(false);
-    setParam({ ...param, PageIndex: 1, PageSize: 5 });
+    setParam({ ...param, PageIndex: 1, PageSize: 8 });
   };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <div className='manager-background'>
-      <div className='manager-align'>
-        <div className='head-card'>
-          <Search
-            placeholder='Tra cứu vận đơn'
-            onSearch={onSearch}
-            enterButton
-            style={{ width: '250px' }}
-            size='large'
-          />
-        </div>
+    <div className='admin-background'>
+      <div className='admin-align'>
         <div className='table-align'>
           <Table
             columns={columns}
@@ -171,9 +187,9 @@ const AdminHome = () => {
               x: 1300,
             }}
             pagination={{
-              total: tableTotal,
-              pageSize: 5,
-              hideOnSinglePage: true,
+              total: 16,
+              pageSize: 8,
+              // hideOnSinglePage: true,
               onChange: (page, pageSize) => {
                 setParam({ ...param, PageIndex: page, PageSize: pageSize });
               },
@@ -187,22 +203,8 @@ const AdminHome = () => {
           >
             <Row>
               <Col span={12}>
-                {/* <b>UserID</b>
-                <Input defaultValue={user.userId} disabled /> */}
-                <b>Login Name</b>
-                <Input
-                  defaultValue={user.loginName}
-                  onChange={(e) => {
-                    setUser({ ...user, loginName: e.target.value });
-                  }}
-                />
-                <b>Password</b>
-                <Input
-                  defaultValue={user.password}
-                  onChange={(e) => {
-                    setUser({ ...user, password: e.target.value });
-                  }}
-                />
+                <b>EmployeeId</b>
+                <Input defaultValue={user.employeeId} disabled />
                 <b>Full Name</b>
                 <Input
                   defaultValue={user.fullName}
@@ -219,42 +221,35 @@ const AdminHome = () => {
                 />
               </Col>
               <Col span={12}>
-                <b>Mã khách hàng</b>
+                <b>Email</b>
                 <Input
-                  defaultValue={user.userId}
+                  defaultValue={user.email}
                   onChange={(e) => {
-                    setUser({ ...user, userId: e.target.value });
+                    setUser({ ...user, email: e.target.value });
                   }}
                 />
-                <b>Mã nơi gửi</b>
+                <b>Phone</b>
                 <Input
-                  defaultValue={user.startDepartmentId}
+                  defaultValue={user.phone}
                   onChange={(e) => {
-                    setUser({ ...user, startDepartmentId: e.target.value });
+                    setUser({ ...user, phone: e.target.value });
                   }}
                 />
-                <b>Mã nơi nhận</b>
+                <b>DepartmentId</b>
                 <Input
-                  defaultValue={user.destinationDepartmentId}
+                  defaultValue={user.departmentId}
                   onChange={(e) => {
                     setUser({
                       ...user,
-                      destinationDepartmentId: e.target.value,
+                      departmentId: e.target.value,
                     });
-                  }}
-                />
-                <b>Địa chỉ nơi nhận</b>
-                <Input
-                  defaultValue={user.address}
-                  onChange={(e) => {
-                    setUser({ ...user, address: e.target.value });
                   }}
                 />
                 <b>Trạng thái</b>
                 <Input
-                  defaultValue={user.status}
+                  defaultValue={user.statusId}
                   onChange={(e) => {
-                    setUser({ ...user, status: e.target.value });
+                    setUser({ ...user, statusId: e.target.value });
                   }}
                 />
               </Col>
