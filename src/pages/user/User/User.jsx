@@ -1,3 +1,4 @@
+import { Footer } from 'antd/lib/layout/layout';
 import React from 'react';
 import { useState } from 'react';
 import { Outlet } from 'react-router';
@@ -16,6 +17,14 @@ const User = () => {
       <div className='main-layout'>
         <UserNavbar closeSidebar={toggleCollapsed} />
         <Outlet />
+        <Footer
+          style={{
+            textAlign: 'center',
+          }}
+        >
+          Copyright Ⓒ 2022 by CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI PHÁT TRIỂN
+          E-Shipping
+        </Footer>
       </div>
     </div>
   );
