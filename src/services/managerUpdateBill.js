@@ -1,6 +1,5 @@
 import axios from 'axios';
 import axiosInstance from './axiosInstance';
-
 export function managerUpdateBill(bill) {
   const url = 'https://deliver-store.tk/api/v1/bills';
 

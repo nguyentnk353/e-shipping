@@ -64,7 +64,7 @@ function App() {
           path='/manager'
           element={
             <Suspense fallback={<></>}>
-              <RolesAuthRoute roles={['employee']}>
+              <RolesAuthRoute roles={['1']}>
                 <Manager />
               </RolesAuthRoute>
             </Suspense>

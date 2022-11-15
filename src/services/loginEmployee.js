@@ -1,6 +1,5 @@
 import axios from 'axios';
 import axiosInstance from './axiosInstance';
-
 export function loginEmployee(props) {
   const url = 'https://deliver-store.tk/api/v1/employee/authenticate';
   const LoginName = props.username;
