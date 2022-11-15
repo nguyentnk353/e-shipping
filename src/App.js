@@ -21,6 +21,7 @@ import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
+import MissingPage from './pages/guest/MissingPage/MissingPage';
 import UserHome2 from './pages/user/UserHome2/UserHome2';
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
-
+        <Route path='*' element={<MissingPage />} />
         {/* protected routes */}
         <Route
           path='/user'
