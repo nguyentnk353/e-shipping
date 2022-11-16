@@ -468,14 +468,32 @@ const ManagerHome = () => {
                 </Col>
                 <Col span={2}></Col>
                 <Col span={11}>
-                  <Form.Item label='Địa chỉ nơi nhận' name='address'>
+                  <Form.Item
+                    label='Địa chỉ nơi nhận'
+                    name='address'
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Hãy nhập địa chỉ nơi nhận',
+                      },
+                    ]}
+                  >
                     <Input placeholder='Nhập địa chỉ nơi nhận' />
                   </Form.Item>
                 </Col>
               </Row>
               <Row>
                 <Col span={11}>
-                  <Form.Item label='Loại hàng hóa' name='categoryId'>
+                  <Form.Item
+                    label='Loại hàng hóa'
+                    name='categoryId'
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Hãy chọn loại hàng hóa',
+                      },
+                    ]}
+                  >
                     <Select
                       showSearch
                       placeholder='Chọn loại hàng hóa '
@@ -494,14 +512,33 @@ const ManagerHome = () => {
                 </Col>
                 <Col span={2}></Col>
                 <Col span={11}>
-                  <Form.Item label='Khối lượng' name='weight'>
+                  <Form.Item
+                    label='Khối lượng'
+                    name='weight'
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Hãy chọn loại hàng hóa',
+                      },
+                    ]}
+                  >
                     <Input placeholder='Nhập khối lượng hàng hóa' />
                   </Form.Item>
                 </Col>
               </Row>
               <Row>
                 <Col span={11}>
-                  <Form.Item label='Chi phí' name='price' style={{ margin: 0 }}>
+                  <Form.Item
+                    label='Chi phí'
+                    name='price'
+                    style={{ margin: 0 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Hãy nhập chi phí giao hàng',
+                      },
+                    ]}
+                  >
                     <Input placeholder='Nhập chi phí giao hàng' />
                   </Form.Item>
                 </Col>
@@ -511,6 +548,12 @@ const ManagerHome = () => {
                     label='Trạng thái'
                     name='status'
                     style={{ margin: 0 }}
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Hãy chọn trạng thái',
+                      },
+                    ]}
                   >
                     <Select
                       showSearch

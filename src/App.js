@@ -21,7 +21,11 @@ import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
+import MissingPage from './pages/guest/MissingPage/MissingPage';
 import UserHome2 from './pages/user/UserHome2/UserHome2';
+import Admin from './pages/admin/Admin/Admin';
+import AdminHome from './pages/admin/AdminHome/AdminHome';
+import AdminAddUser from './pages/admin/AdminAddUser/AdminAddUser';
 
 function App() {
   return (
@@ -37,7 +41,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
-
+        <Route path='*' element={<MissingPage />} />
         {/* protected routes */}
         <Route
           path='/user'
@@ -72,6 +76,20 @@ function App() {
         >
           <Route path='home' element={<ManagerHome />} />
         </Route>
+        <Route
+          path='/admin'
+          element={
+            <Suspense fallback={<></>}>
+              <RolesAuthRoute roles={['2']}>
+                <Admin />
+              </RolesAuthRoute>
+            </Suspense>
+          }
+        >
+          <Route path='home' element={<AdminHome />} />
+          <Route path='create-new-employee' element={<AdminAddUser />} />
+        </Route>
+
       </Routes>
     </div>
   );
