@@ -21,6 +21,8 @@ import UserUpdateBill from './pages/user/UserUpdateBill/UserUpdateBill';
 import UserUpdateAction from './pages/user/UserUpdateAction/UserUpdateAction';
 import UserListStartAddress from './pages/user/UserListStartAddress/UserListStartAddress';
 import UserStatisticBill from './pages/user/UserStatisticBill/UserStatisticBill';
+import MissingPage from './pages/guest/MissingPage/MissingPage';
+import UserHome2 from './pages/user/UserHome2/UserHome2';
 import Admin from './pages/admin/Admin/Admin';
 import AdminHome from './pages/admin/AdminHome/AdminHome';
 import AdminAddUser from './pages/admin/AdminAddUser/AdminAddUser';
@@ -39,9 +41,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/login-employee' element={<LoginEmployee />} />
         <Route path='/register' element={<Register />} />
-        {/* <Route path='/admin' element={<Admin />}>
-          <Route path='home' element={<AdminHome />} />
-        </Route> */}
+        <Route path='*' element={<MissingPage />} />
         {/* protected routes */}
         <Route
           path='/user'
@@ -53,7 +53,7 @@ function App() {
             </Suspense>
           }
         >
-          <Route path='home' element={<UserHome />} />
+          <Route path='home' element={<UserHome2 />} />
           <Route path='service' element={<UserService />} />
           <Route path='create-new-order' element={<UserAddOrder />} />
           <Route path='view-bills' element={<UserViewBills />} />

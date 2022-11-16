@@ -121,8 +121,8 @@ function UserStatisticBill() {
                             border: '1px solid'
                         }}
                         defaultValue={[
-                            moment("2022/06/01", dateFormat),
-                            moment("2022/11/12", dateFormat)
+                            moment("01/06/2022", dateFormat),
+                            moment("16/11/2022", dateFormat)
                         ]}
                         format={dateFormat}
                     />
